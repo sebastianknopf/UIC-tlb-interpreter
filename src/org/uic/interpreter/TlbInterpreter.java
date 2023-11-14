@@ -3,13 +3,14 @@ package org.uic.interpreter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.uic.barcode.staticFrame.StaticFrame;
+import org.uic.barcode.staticFrame.ticketLayoutBarcode.LayoutElement;
 import org.uic.barcode.staticFrame.ticketLayoutBarcode.TicketLayout;
 import org.uic.interpreter.exception.TlbConstraintException;
 import org.uic.interpreter.exception.TlbInterpreterException;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class TlbInterpreter {
 
@@ -62,12 +63,15 @@ public class TlbInterpreter {
                     JSONObject fieldObject = instructionFieldsArray.getJSONObject(f);
 
                     Field field = new Field();
-                    field.setLine(fieldObject.getString("line"));
-                    field.setColumn(fieldObject.getString("column"));
+                    field.setLine(fieldObject.getInt("line"));
+                    field.setColumn(fieldObject.getInt("column"));
 
                     JSONArray fieldSubstringArray = instructionObject.getJSONArray("substring");
                     field.setSubstringStart(fieldSubstringArray.getInt(0));
                     field.setSubstringLength(fieldSubstringArray.getInt(1));
+
+                    field.setPrefix(fieldObject.getString("prefix"));
+                    field.setSuffix(fieldObject.getString("suffix"));
 
                     instruction.addField(field);
                 }
@@ -114,11 +118,11 @@ public class TlbInterpreter {
 
         for (Instruction instruction : this.interpreter.getInstructions()) {
             if (instruction.getType().equalsIgnoreCase("productName")) {
-                result.put(instruction.getType(), this.productNameInstruction());
+                result.put(instruction.getType(), this.simpleStringInstruction(instruction, uicTicketLayout));
             } else if (instruction.getType().equalsIgnoreCase("validFrom")) {
-                result.put(instruction.getType(), this.validFromInstruction());
+                result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
             } else if (instruction.getType().equalsIgnoreCase("validUntil")) {
-                result.put(instruction.getType(), this.validUntilInstruction());
+                result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
             } else {
                 throw new TlbInterpreterException(String.format("unknown instruction type %s", instruction.getType()));
             }
@@ -127,16 +131,57 @@ public class TlbInterpreter {
         return result;
     }
 
-    private String productNameInstruction() {
+    private String simpleStringInstruction(Instruction instruction, TicketLayout uicTicketLayout) throws TlbInterpreterException {
+        return this.extractInstructionBaseData(instruction, uicTicketLayout);
+    }
+
+    private Date dateTimeInstruction(Instruction instruction, TicketLayout uicTicketLayout) throws TlbInterpreterException {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(instruction.getFormat());
+            return sdf.parse(this.extractInstructionBaseData(instruction, uicTicketLayout));
+        } catch(ParseException exception) {
+            throw new TlbInterpreterException(exception);
+        }
+    }
+
+    private String extractInstructionBaseData(Instruction instruction, TicketLayout uicTicketLayout) throws TlbInterpreterException {
+        List<String> baseStringList = new ArrayList<>();
+        for (Field field : instruction.getFields()) {
+            String fieldValue = this.findLayoutField(uicTicketLayout, field.getLine(), field.getColumn());
+            if (fieldValue == null) {
+                throw new TlbInterpreterException(String.format("field at line %d and column %d does not exist", field.getLine(), field.getColumn()));
+            }
+
+            if (field.getSubstringStart() > -1) {
+                if (field.getSubstringLength() < 1) {
+                    fieldValue = fieldValue.substring(field.getSubstringStart());
+                } else {
+                    fieldValue = fieldValue.substring(field.getSubstringStart(), field.getSubstringLength());
+                }
+            }
+
+            if (field.getPrefix() != null) {
+                fieldValue = String.format("%s-%s", field.getPrefix(), fieldValue);
+            }
+
+            if (field.getSuffix() != null) {
+                fieldValue = String.format("%s-%s", fieldValue, field.getSuffix());
+            }
+
+            baseStringList.add(fieldValue);
+        }
+
+        return String.join(instruction.getDelimiter(), baseStringList);
+    }
+
+    private String findLayoutField(TicketLayout uicTicketLayout, int line, int column) {
+        for (LayoutElement layoutElement : uicTicketLayout.getElements()) {
+            if (layoutElement.getLine() == line && layoutElement.getColumn() == column) {
+                return layoutElement.getText();
+            }
+        }
+
         return null;
-    }
-
-    private Date validFromInstruction() {
-        return new Date();
-    }
-
-    private Date validUntilInstruction() {
-        return new Date();
     }
 
     private void raiseConstraintException(String conditionKey) throws TlbConstraintException {

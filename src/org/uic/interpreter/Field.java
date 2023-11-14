@@ -2,24 +2,31 @@ package org.uic.interpreter;
 
 class Field {
 
-    private String line;
-    private String column;
+    private int line;
+    private int column;
     private int substringStart;
     private int substringLength;
+    private String prefix;
+    private String suffix;
 
-    public String getLine() {
+    Field() {
+        this.substringStart = -1;
+        this.substringLength = -1;
+    }
+
+    public int getLine() {
         return line;
     }
 
-    public void setLine(String line) {
+    public void setLine(int line) {
         this.line = line;
     }
 
-    public String getColumn() {
+    public int getColumn() {
         return column;
     }
 
-    public void setColumn(String column) {
+    public void setColumn(int column) {
         this.column = column;
     }
 
@@ -37,5 +44,21 @@ class Field {
 
     public void setSubstringLength(int substringLength) {
         this.substringLength = substringLength;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
     }
 }
