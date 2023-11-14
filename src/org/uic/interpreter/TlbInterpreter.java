@@ -56,7 +56,7 @@ public class TlbInterpreter {
                 Instruction instruction = new Instruction();
                 instruction.setType(instructionObject.getString("type"));
                 instruction.setDelimiter(instructionObject.getString("delimiter"));
-                instruction.setFormat(interpreterObject.getString("format"));
+                instruction.setFormat(instructionObject.getString("format"));
 
                 JSONArray instructionFieldsArray = instructionObject.getJSONArray("fields");
                 for (int f = 0; f < instructionFieldsArray.length(); f++) {
@@ -66,12 +66,14 @@ public class TlbInterpreter {
                     field.setLine(fieldObject.getInt("line"));
                     field.setColumn(fieldObject.getInt("column"));
 
-                    JSONArray fieldSubstringArray = instructionObject.getJSONArray("substring");
-                    field.setSubstringStart(fieldSubstringArray.getInt(0));
-                    field.setSubstringLength(fieldSubstringArray.getInt(1));
+                    JSONArray fieldSubstringArray = fieldObject.getJSONArray("substring");
+                    if (fieldSubstringArray.length() == 2) {
+                        field.setSubstringStart(fieldSubstringArray.getInt(0));
+                        field.setSubstringLength(fieldSubstringArray.getInt(1));
+                    }
 
-                    field.setPrefix(fieldObject.getString("prefix"));
-                    field.setSuffix(fieldObject.getString("suffix"));
+                    field.setPrefix(fieldObject.has("prefix") ? fieldObject.getString("prefix") : null);
+                    field.setSuffix(fieldObject.has("suffix") ? fieldObject.getString("suffix") : null);
 
                     instruction.addField(field);
                 }
@@ -114,31 +116,49 @@ public class TlbInterpreter {
             }
         }
 
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new LinkedHashMap<>();
 
         for (Instruction instruction : this.interpreter.getInstructions()) {
             if (instruction.getType().equalsIgnoreCase("productName")) {
-                result.put(instruction.getType(), this.simpleStringInstruction(instruction, uicTicketLayout));
+                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
             } else if (instruction.getType().equalsIgnoreCase("validFrom")) {
                 result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
             } else if (instruction.getType().equalsIgnoreCase("validUntil")) {
                 result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
+            } else if (instruction.getType().equalsIgnoreCase("passengerName")) {
+                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
+            } else if (instruction.getType().equalsIgnoreCase("serviceClass")) {
+                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
             } else {
                 throw new TlbInterpreterException(String.format("unknown instruction type %s", instruction.getType()));
+            }
+        }
+
+        if (result.containsKey("validFrom") && result.containsKey("validUntil")) {
+            Date validFrom = (Date) result.get("validFrom");
+            Date validUntil = (Date) result.get("validUntil");
+
+            if (validUntil.before(validFrom)) {
+                Calendar calendar = new GregorianCalendar();
+                calendar.setTime(validUntil);
+                calendar.add(Calendar.YEAR, 1);
+
+                result.replace("validUntil", calendar.getTime());
             }
         }
 
         return result;
     }
 
-    private String simpleStringInstruction(Instruction instruction, TicketLayout uicTicketLayout) throws TlbInterpreterException {
+    private String stringInstruction(Instruction instruction, TicketLayout uicTicketLayout) throws TlbInterpreterException {
         return this.extractInstructionBaseData(instruction, uicTicketLayout);
     }
 
     private Date dateTimeInstruction(Instruction instruction, TicketLayout uicTicketLayout) throws TlbInterpreterException {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat(instruction.getFormat());
-            return sdf.parse(this.extractInstructionBaseData(instruction, uicTicketLayout));
+            String instructionBaseData = this.extractInstructionBaseData(instruction, uicTicketLayout);
+            return sdf.parse(instructionBaseData);
         } catch(ParseException exception) {
             throw new TlbInterpreterException(exception);
         }
@@ -156,7 +176,7 @@ public class TlbInterpreter {
                 if (field.getSubstringLength() < 1) {
                     fieldValue = fieldValue.substring(field.getSubstringStart());
                 } else {
-                    fieldValue = fieldValue.substring(field.getSubstringStart(), field.getSubstringLength());
+                    fieldValue = fieldValue.substring(field.getSubstringStart(), field.getSubstringStart() + field.getSubstringLength());
                 }
             }
 

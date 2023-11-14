@@ -1,0 +1,109 @@
+{
+	"name": "VBN Interpreter",
+	"version": "1.0",
+	"constraints": [
+		{
+			"key": "ricsCode",
+			"values": ["3348"]
+		}, 
+		{
+			"key": "messageTypeVersion",
+			"values": ["1"]
+		},
+		{
+			"key":"recordVersion",
+			"values": ["01"]
+		},
+		{
+			"key":"layoutStandard",
+			"values": ["RCT2"]
+		}
+	],
+	"instructions": [
+		{
+			"type":"productName",
+			"delimiter":"",
+			"format":"",
+			"fields": [
+				{
+					"line":1,
+					"column":18,
+					"substring": [],
+				}
+			]
+		},
+		{
+			"type":"validFrom",
+			"delimiter":".",
+			"format":"dd.MM.yyyy.HH.mm",
+			"fields": [
+				{
+					"line":6,
+					"column":1,
+					"substring": [],
+				},
+				{
+					"line":3,
+					"column":1,
+					"substring": [],
+				},
+				{
+					"line":6,
+					"column":7,
+					"substring": [],
+				},
+			]
+		},
+		{
+			"type":"validUntil",
+			"delimiter":".",
+			"format":"dd.MM.yyyy.HH.mm",
+			"fields": [
+				{
+					"line":6,
+					"column":52,
+					"substring": [],
+				},
+				{
+					"line":3,
+					"column":1,
+					"substring": [],
+				},
+				{
+					"line":6,
+					"column":58,
+					"substring": [],
+				},
+			]
+		},
+		{
+			"type":"passengerName",
+			"delimiter":" ",
+			"format":"",
+			"fields": [
+				{
+					"line":0,
+					"column":62,
+					"substring": [],
+				},
+				{
+					"line":0,
+					"column":52,
+					"substring": [],
+				}
+			]
+		},
+		{
+			"type":"serviceClass",
+			"delimiter":"",
+			"format":"",
+			"fields": [
+				{
+					"line":6,
+					"column":66,
+					"substring": [],
+				}
+			]
+		}
+	]
+}
