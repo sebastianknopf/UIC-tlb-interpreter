@@ -203,9 +203,17 @@ public class TlbInterpreter {
         }
 
         if (instruction.getDelimiter() == null) {
-            return baseStringList.get(0);
+            if (!baseStringList.isEmpty()) {
+                return baseStringList.get(0);
+            } else {
+                return null;
+            }
         } else {
-            return String.join(instruction.getDelimiter(), baseStringList);
+            if (!baseStringList.isEmpty()) {
+                return String.join(instruction.getDelimiter(), baseStringList);
+            } else {
+                return null;
+            }
         }
     }
 
