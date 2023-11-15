@@ -8,18 +8,40 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println();
+
         try {
-            byte[] uicData = hexToBin(loadFile(args[0]));
+            Scanner scanner = new Scanner(System.in);
+
+            String hexFilename;
+            if (args.length > 0) {
+                hexFilename = args[0];
+            } else {
+                System.out.print("HEX-Datei: ");
+                hexFilename = scanner.next();
+            }
+
+            String interpreterFilename;
+            if (args.length > 2) {
+                interpreterFilename = args[1];
+            } else {
+                System.out.print("Interpreter-Datei: ");
+                interpreterFilename = scanner.next();
+            }
+
+            byte[] uicData = hexToBin(loadFile(hexFilename));
             Decoder uicDecoder = new Decoder(uicData);
 
             TlbInterpreter interpreter = new TlbInterpreter();
-            interpreter.loadInterpreter(loadFile(args[1]));
+            interpreter.loadInterpreter(loadFile(interpreterFilename));
             Map<String, Object> interpreterResult = interpreter.processData(uicDecoder.getStaticFrame(), uicDecoder.getLayout());
 
+            System.out.println();
             for (Map.Entry<String, Object> entry : interpreterResult.entrySet()) {
                 System.out.println(String.format("%s: %s", entry.getKey(), entry.getValue().toString()));
             }
@@ -27,6 +49,8 @@ public class Main {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        System.out.println();
     }
 
     private static String loadFile(String fileName) throws IOException {

@@ -55,10 +55,14 @@ public class TlbInterpreter {
 
                 Instruction instruction = new Instruction();
                 instruction.setType(instructionObject.getString("type"));
-                instruction.setDelimiter(instructionObject.getString("delimiter"));
-                instruction.setFormat(instructionObject.getString("format"));
+                instruction.setDelimiter(instructionObject.has("delimiter") ? instructionObject.getString("delimiter") : null);
+                instruction.setFormat(instructionObject.has("format") ? instructionObject.getString("format") : null);
 
                 JSONArray instructionFieldsArray = instructionObject.getJSONArray("fields");
+                if (instructionFieldsArray.length() > 1 && instruction.getDelimiter() == null) {
+                    throw new TlbInterpreterException("instruction delimiter property must not be null when number of fields > 1");
+                }
+
                 for (int f = 0; f < instructionFieldsArray.length(); f++) {
                     JSONObject fieldObject = instructionFieldsArray.getJSONObject(f);
 
@@ -66,10 +70,12 @@ public class TlbInterpreter {
                     field.setLine(fieldObject.getInt("line"));
                     field.setColumn(fieldObject.getInt("column"));
 
-                    JSONArray fieldSubstringArray = fieldObject.getJSONArray("substring");
-                    if (fieldSubstringArray.length() == 2) {
-                        field.setSubstringStart(fieldSubstringArray.getInt(0));
-                        field.setSubstringLength(fieldSubstringArray.getInt(1));
+                    if (fieldObject.has("substring")) {
+                        JSONArray fieldSubstringArray = fieldObject.getJSONArray("substring");
+                        if (fieldSubstringArray.length() == 2) {
+                            field.setSubstringStart(fieldSubstringArray.getInt(0));
+                            field.setSubstringLength(fieldSubstringArray.getInt(1));
+                        }
                     }
 
                     field.setPrefix(fieldObject.has("prefix") ? fieldObject.getString("prefix") : null);
@@ -112,7 +118,7 @@ public class TlbInterpreter {
                     this.raiseConstraintException(constraint.getKey());
                 }
             } else {
-                throw new TlbInterpreterException(String.format("unknown condition key %s", constraint.getKey()));
+                throw new TlbConstraintException(String.format("unknown constraint key %s", constraint.getKey()));
             }
         }
 
@@ -191,7 +197,11 @@ public class TlbInterpreter {
             baseStringList.add(fieldValue);
         }
 
-        return String.join(instruction.getDelimiter(), baseStringList);
+        if (instruction.getDelimiter() == null) {
+            return baseStringList.get(0);
+        } else {
+            return String.join(instruction.getDelimiter(), baseStringList);
+        }
     }
 
     private String findLayoutField(TicketLayout uicTicketLayout, int line, int column) {

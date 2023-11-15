@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact name="org.uic.interpreter">
+    <output-path>$PROJECT_DIR$/out/artifacts/org_uic_interpreter</output-path>
+    <root id="root">
+      <element id="archive" name="org.uic.interpreter.jar">
+        <element id="module-output" name="UicTlbInterpreter" />
+      </element>
+      <element id="library" level="application" name="json" />
+      <element id="library" level="application" name="org.uic.barcode-1.4.4" />
+    </root>
+  </artifact>
+</component>

@@ -1,10 +1,10 @@
 {
-	"name": "VBN Interpreter",
+	"name": "DB Plain Interpreter",
 	"version": "1.0",
 	"constraints": [
 		{
 			"key": "ricsCode",
-			"values": ["3348"]
+			"values": ["0080", "1080"]
 		}, 
 		{
 			"key": "messageTypeVersion",
@@ -16,7 +16,7 @@
 		},
 		{
 			"key":"layoutStandard",
-			"values": ["RCT2"]
+			"values": ["PLAI"]
 		}
 	],
 	"instructions": [
@@ -25,68 +25,42 @@
 			"fields": [
 				{
 					"line":1,
-					"column":18,
+					"column":1
 				}
 			]
 		},
 		{
 			"type":"validFrom",
 			"delimiter":".",
-			"format":"dd.MM.yyyy.HH.mm",
+			"format":"dd.MM.yyyy HH:mm",
 			"fields": [
 				{
-					"line":6,
-					"column":1
-				},
-				{
-					"line":3,
-					"column":1
-				},
-				{
-					"line":6,
-					"column":7
+					"line":2,
+					"column":1,
+					"substring": [4, 16]
 				}
 			]
 		},
 		{
 			"type":"validUntil",
 			"delimiter":".",
-			"format":"dd.MM.yyyy.HH.mm",
+			"format":"dd.MM.yyyy HH:mm",
 			"fields": [
 				{
-					"line":6,
-					"column":52
-				},
-				{
-					"line":3,
-					"column":1
-				},
-				{
-					"line":6,
-					"column":58
+					"line":2,
+					"column":1,
+					"substring": [25, 16]
 				}
 			]
 		},
 		{
 			"type":"passengerName",
 			"delimiter":" ",
+			"format":"",
 			"fields": [
 				{
-					"line":0,
-					"column":62
-				},
-				{
-					"line":0,
-					"column":52
-				}
-			]
-		},
-		{
-			"type":"serviceClass",
-			"fields": [
-				{
-					"line":6,
-					"column":66,
+					"line":8,
+					"column":1
 				}
 			]
 		}
