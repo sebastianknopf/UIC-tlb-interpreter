@@ -23,6 +23,22 @@ public class TlbInterpreter {
         this.loadInterpreter(tlbInterpreterJson);
     }
 
+    public String getInterpreterName() {
+        if (this.interpreter != null) {
+            return this.interpreter.getName();
+        } else {
+            return null;
+        }
+    }
+
+    public String getInterpreterVersion() {
+        if (this.interpreter != null) {
+            return this.interpreter.getVersion();
+        } else {
+            return null;
+        }
+    }
+
     public void loadInterpreter(String tlbInterpreterJson) throws TlbInterpreterException {
         try {
             // extract primary interpreter

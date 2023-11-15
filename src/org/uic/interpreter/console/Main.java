@@ -34,11 +34,17 @@ public class Main {
                 interpreterFilename = scanner.next();
             }
 
+            System.out.println();
+
             byte[] uicData = hexToBin(loadFile(hexFilename));
             Decoder uicDecoder = new Decoder(uicData);
 
             TlbInterpreter interpreter = new TlbInterpreter();
             interpreter.loadInterpreter(loadFile(interpreterFilename));
+
+            System.out.println(interpreter.getInterpreterName());
+            System.out.println(interpreter.getInterpreterVersion());
+
             Map<String, Object> interpreterResult = interpreter.processData(uicDecoder.getStaticFrame(), uicDecoder.getLayout());
 
             System.out.println();
