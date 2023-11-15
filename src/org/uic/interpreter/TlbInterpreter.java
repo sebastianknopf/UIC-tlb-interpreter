@@ -149,9 +149,23 @@ public class TlbInterpreter {
                 result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
             } else if (instruction.getType().equalsIgnoreCase("validUntil")) {
                 result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
+            } else if (instruction.getType().equalsIgnoreCase("startStationName")) {
+                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
+            } else if (instruction.getType().equalsIgnoreCase("destinationStationName")) {
+                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
+            }  else if (instruction.getType().equalsIgnoreCase("returnValidFrom")) {
+                result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
+            } else if (instruction.getType().equalsIgnoreCase("returnValidUntil")) {
+                result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
+            } else if (instruction.getType().equalsIgnoreCase("returnStartStationName")) {
+                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
+            } else if (instruction.getType().equalsIgnoreCase("returnDestinationStationName")) {
+                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
             } else if (instruction.getType().equalsIgnoreCase("passengerName")) {
                 result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
             } else if (instruction.getType().equalsIgnoreCase("serviceClass")) {
+                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
+            } else if (instruction.getType().equalsIgnoreCase("infoText")) {
                 result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
             } else {
                 throw new TlbInterpreterException(String.format("unknown instruction type %s", instruction.getType()));
