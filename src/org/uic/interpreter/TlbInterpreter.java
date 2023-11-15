@@ -70,6 +70,8 @@ public class TlbInterpreter {
                     field.setLine(fieldObject.getInt("line"));
                     field.setColumn(fieldObject.getInt("column"));
 
+                    field.setOptional(fieldObject.has("optional") && fieldObject.getBoolean("optional"));
+
                     if (fieldObject.has("substring")) {
                         JSONArray fieldSubstringArray = fieldObject.getJSONArray("substring");
                         if (fieldSubstringArray.length() == 2) {
@@ -174,8 +176,11 @@ public class TlbInterpreter {
         List<String> baseStringList = new ArrayList<>();
         for (Field field : instruction.getFields()) {
             String fieldValue = this.findLayoutField(uicTicketLayout, field.getLine(), field.getColumn());
-            if (fieldValue == null) {
+
+            if (!field.isOptional() && fieldValue == null) {
                 throw new TlbInterpreterException(String.format("field at line %d and column %d does not exist", field.getLine(), field.getColumn()));
+            } else if (field.isOptional() && fieldValue == null) {
+                continue;
             }
 
             if (field.getSubstringStart() > -1) {

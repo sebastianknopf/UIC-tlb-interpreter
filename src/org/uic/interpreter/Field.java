@@ -4,6 +4,7 @@ class Field {
 
     private int line;
     private int column;
+    private boolean optional;
     private int substringStart;
     private int substringLength;
     private String prefix;
@@ -28,6 +29,14 @@ class Field {
 
     public void setColumn(int column) {
         this.column = column;
+    }
+
+    public boolean isOptional() {
+        return optional;
+    }
+
+    public void setOptional(boolean optional) {
+        this.optional = optional;
     }
 
     public int getSubstringStart() {
