@@ -1,5 +1,7 @@
 package org.uic.interpreter.console;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.uic.barcode.Decoder;
 import org.uic.interpreter.TlbInterpreter;
 
@@ -18,12 +20,12 @@ public class Main {
         try {
             Scanner scanner = new Scanner(System.in);
 
-            String hexFilename;
+            String ticketFilename;
             if (args.length > 0) {
-                hexFilename = args[0];
+                ticketFilename = args[0];
             } else {
-                System.out.print("HEX-Datei: ");
-                hexFilename = scanner.next();
+                System.out.print("(((eTicket-Info-Datei: ");
+                ticketFilename = scanner.next();
             }
 
             String interpreterFilename;
@@ -36,7 +38,12 @@ public class Main {
 
             System.out.println();
 
-            byte[] uicData = hexToBin(loadFile(hexFilename));
+            // extract data from (((eTicket Info App
+            JSONObject ticketInfoObject = new JSONObject(loadFile(ticketFilename));
+            JSONArray ticketInfoExpertViews = ticketInfoObject.getJSONArray("expertview");
+            JSONObject ticketInfoExpertView = ticketInfoExpertViews.getJSONObject(0);
+
+            byte[] uicData = hexToBin(ticketInfoExpertView.getString("base16"));
             Decoder uicDecoder = new Decoder(uicData);
 
             TlbInterpreter interpreter = new TlbInterpreter();
@@ -65,6 +72,8 @@ public class Main {
     }
 
     private static byte[] hexToBin(String hex) {
+        hex = hex.replace("0x", "");
+
         int len = hex.length();
         byte[] data = new byte[len / 2];
         for (int i = 0; i < len; i += 2) {
