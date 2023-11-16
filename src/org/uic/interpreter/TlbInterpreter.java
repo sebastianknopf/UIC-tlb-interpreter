@@ -99,6 +99,14 @@ public class TlbInterpreter {
                     field.setPrefix(fieldObject.has("prefix") ? fieldObject.getString("prefix") : null);
                     field.setSuffix(fieldObject.has("suffix") ? fieldObject.getString("suffix") : null);
 
+                    if (field.getPrefix() != null && instruction.getDelimiter() == null) {
+                        throw new TlbInterpreterException("delimiter must not be null when using a prefix");
+                    }
+
+                    if (field.getSuffix() != null && instruction.getDelimiter() == null) {
+                        throw new TlbInterpreterException("delimiter must not be null when using a suffix");
+                    }
+
                     instruction.addField(field);
                 }
 
@@ -222,11 +230,11 @@ public class TlbInterpreter {
             }
 
             if (field.getPrefix() != null) {
-                fieldValue = String.format("%s-%s", field.getPrefix(), fieldValue);
+                fieldValue = String.format("%s%s%s", field.getPrefix(), instruction.getDelimiter(), fieldValue);
             }
 
             if (field.getSuffix() != null) {
-                fieldValue = String.format("%s-%s", fieldValue, field.getSuffix());
+                fieldValue = String.format("%s%s%s", fieldValue, instruction.getDelimiter(), field.getSuffix());
             }
 
             baseStringList.add(fieldValue);
