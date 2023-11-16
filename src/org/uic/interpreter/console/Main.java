@@ -56,14 +56,12 @@ public class Main {
 
             System.out.println();
             for (Map.Entry<String, Object> entry : interpreterResult.entrySet()) {
-                System.out.println(String.format("%s: %s", entry.getKey(), entry.getValue().toString()));
+                System.out.println(String.format("%s: %s", entry.getKey(), entry.getValue() != null ? entry.getValue().toString() : null));
             }
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        System.out.println();
     }
 
     private static String loadFile(String fileName) throws IOException {

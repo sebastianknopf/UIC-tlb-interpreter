@@ -64,6 +64,18 @@
 			]
 		},
 		{
+			"type":"passengerBirthday",
+			"optional":true,
+			"format": "dd.MM.yyyy",
+			"fields": [
+				{
+					"line":8,
+					"column":1,
+					"regex":"(\\d{1,2}\\.\\d{1,2}\\.\\d{4})"
+				}
+			]
+		},
+		{
 			"type":"infoText",
 			"fields": [
 				{

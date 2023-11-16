@@ -7,6 +7,7 @@ class Field {
     private boolean optional;
     private int substringStart;
     private int substringLength;
+    private String regex;
     private String prefix;
     private String suffix;
 
@@ -53,6 +54,14 @@ class Field {
 
     public void setSubstringLength(int substringLength) {
         this.substringLength = substringLength;
+    }
+
+    public String getRegex() {
+        return regex;
+    }
+
+    public void setRegex(String regex) {
+        this.regex = regex;
     }
 
     public String getPrefix() {

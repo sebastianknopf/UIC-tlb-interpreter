@@ -6,6 +6,7 @@ import java.util.List;
 class Element {
 
     private String type;
+    private boolean optional;
     private String delimiter;
     private String format;
     private List<Field> fields;
@@ -16,6 +17,14 @@ class Element {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public boolean isOptional() {
+        return optional;
+    }
+
+    public void setOptional(boolean optional) {
+        this.optional = optional;
     }
 
     public String getDelimiter() {
