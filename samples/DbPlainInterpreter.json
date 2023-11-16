@@ -19,7 +19,7 @@
 			"values": ["PLAI"]
 		}
 	],
-	"instructions": [
+	"elements": [
 		{
 			"type":"productName",
 			"fields": [

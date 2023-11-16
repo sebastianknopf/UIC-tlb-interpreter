@@ -19,7 +19,7 @@
 			"values": ["RCT2"]
 		}
 	],
-	"instructions": [
+	"elements": [
 		{
 			"type":"productName",
 			"fields": [

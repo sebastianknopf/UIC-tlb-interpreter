@@ -64,18 +64,18 @@ public class TlbInterpreter {
                 this.interpreter.addCondition(constraint);
             }
 
-            // extract instructions
-            JSONArray instructionsArray = interpreterObject.getJSONArray("instructions");
+            // extract elements
+            JSONArray instructionsArray = interpreterObject.getJSONArray("elements");
             for (int i = 0; i < instructionsArray.length(); i++) {
                 JSONObject instructionObject = (JSONObject) instructionsArray.get(i);
 
-                Instruction instruction = new Instruction();
-                instruction.setType(instructionObject.getString("type"));
-                instruction.setDelimiter(instructionObject.has("delimiter") ? instructionObject.getString("delimiter") : null);
-                instruction.setFormat(instructionObject.has("format") ? instructionObject.getString("format") : null);
+                Element element = new Element();
+                element.setType(instructionObject.getString("type"));
+                element.setDelimiter(instructionObject.has("delimiter") ? instructionObject.getString("delimiter") : null);
+                element.setFormat(instructionObject.has("format") ? instructionObject.getString("format") : null);
 
                 JSONArray instructionFieldsArray = instructionObject.getJSONArray("fields");
-                if (instructionFieldsArray.length() > 1 && instruction.getDelimiter() == null) {
+                if (instructionFieldsArray.length() > 1 && element.getDelimiter() == null) {
                     throw new TlbInterpreterException("instruction delimiter property must not be null when number of fields > 1");
                 }
 
@@ -99,18 +99,18 @@ public class TlbInterpreter {
                     field.setPrefix(fieldObject.has("prefix") ? fieldObject.getString("prefix") : null);
                     field.setSuffix(fieldObject.has("suffix") ? fieldObject.getString("suffix") : null);
 
-                    if (field.getPrefix() != null && instruction.getDelimiter() == null) {
+                    if (field.getPrefix() != null && element.getDelimiter() == null) {
                         throw new TlbInterpreterException("delimiter must not be null when using a prefix");
                     }
 
-                    if (field.getSuffix() != null && instruction.getDelimiter() == null) {
+                    if (field.getSuffix() != null && element.getDelimiter() == null) {
                         throw new TlbInterpreterException("delimiter must not be null when using a suffix");
                     }
 
-                    instruction.addField(field);
+                    element.addField(field);
                 }
 
-                this.interpreter.addInstruction(instruction);
+                this.interpreter.addInstruction(element);
             }
         } catch (Exception exception) {
             throw new TlbInterpreterException(exception);
@@ -150,33 +150,33 @@ public class TlbInterpreter {
 
         Map<String, Object> result = new LinkedHashMap<>();
 
-        for (Instruction instruction : this.interpreter.getInstructions()) {
-            if (instruction.getType().equalsIgnoreCase("productName")) {
-                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
-            } else if (instruction.getType().equalsIgnoreCase("validFrom")) {
-                result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
-            } else if (instruction.getType().equalsIgnoreCase("validUntil")) {
-                result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
-            } else if (instruction.getType().equalsIgnoreCase("startStationName")) {
-                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
-            } else if (instruction.getType().equalsIgnoreCase("destinationStationName")) {
-                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
-            }  else if (instruction.getType().equalsIgnoreCase("returnValidFrom")) {
-                result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
-            } else if (instruction.getType().equalsIgnoreCase("returnValidUntil")) {
-                result.put(instruction.getType(), this.dateTimeInstruction(instruction, uicTicketLayout));
-            } else if (instruction.getType().equalsIgnoreCase("returnStartStationName")) {
-                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
-            } else if (instruction.getType().equalsIgnoreCase("returnDestinationStationName")) {
-                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
-            } else if (instruction.getType().equalsIgnoreCase("passengerName")) {
-                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
-            } else if (instruction.getType().equalsIgnoreCase("serviceClass")) {
-                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
-            } else if (instruction.getType().equalsIgnoreCase("infoText")) {
-                result.put(instruction.getType(), this.stringInstruction(instruction, uicTicketLayout));
+        for (Element element : this.interpreter.getInstructions()) {
+            if (element.getType().equalsIgnoreCase("productName")) {
+                result.put(element.getType(), this.stringInstruction(element, uicTicketLayout));
+            } else if (element.getType().equalsIgnoreCase("validFrom")) {
+                result.put(element.getType(), this.dateTimeInstruction(element, uicTicketLayout));
+            } else if (element.getType().equalsIgnoreCase("validUntil")) {
+                result.put(element.getType(), this.dateTimeInstruction(element, uicTicketLayout));
+            } else if (element.getType().equalsIgnoreCase("startStationName")) {
+                result.put(element.getType(), this.stringInstruction(element, uicTicketLayout));
+            } else if (element.getType().equalsIgnoreCase("destinationStationName")) {
+                result.put(element.getType(), this.stringInstruction(element, uicTicketLayout));
+            }  else if (element.getType().equalsIgnoreCase("returnValidFrom")) {
+                result.put(element.getType(), this.dateTimeInstruction(element, uicTicketLayout));
+            } else if (element.getType().equalsIgnoreCase("returnValidUntil")) {
+                result.put(element.getType(), this.dateTimeInstruction(element, uicTicketLayout));
+            } else if (element.getType().equalsIgnoreCase("returnStartStationName")) {
+                result.put(element.getType(), this.stringInstruction(element, uicTicketLayout));
+            } else if (element.getType().equalsIgnoreCase("returnDestinationStationName")) {
+                result.put(element.getType(), this.stringInstruction(element, uicTicketLayout));
+            } else if (element.getType().equalsIgnoreCase("passengerName")) {
+                result.put(element.getType(), this.stringInstruction(element, uicTicketLayout));
+            } else if (element.getType().equalsIgnoreCase("serviceClass")) {
+                result.put(element.getType(), this.stringInstruction(element, uicTicketLayout));
+            } else if (element.getType().equalsIgnoreCase("infoText")) {
+                result.put(element.getType(), this.stringInstruction(element, uicTicketLayout));
             } else {
-                throw new TlbInterpreterException(String.format("unknown instruction type %s", instruction.getType()));
+                throw new TlbInterpreterException(String.format("unknown element type %s", element.getType()));
             }
         }
 
@@ -196,23 +196,23 @@ public class TlbInterpreter {
         return result;
     }
 
-    private String stringInstruction(Instruction instruction, TicketLayout uicTicketLayout) throws TlbInterpreterException {
-        return this.extractInstructionBaseData(instruction, uicTicketLayout);
+    private String stringInstruction(Element element, TicketLayout uicTicketLayout) throws TlbInterpreterException {
+        return this.extractInstructionBaseData(element, uicTicketLayout);
     }
 
-    private Date dateTimeInstruction(Instruction instruction, TicketLayout uicTicketLayout) throws TlbInterpreterException {
+    private Date dateTimeInstruction(Element element, TicketLayout uicTicketLayout) throws TlbInterpreterException {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat(instruction.getFormat());
-            String instructionBaseData = this.extractInstructionBaseData(instruction, uicTicketLayout);
+            SimpleDateFormat sdf = new SimpleDateFormat(element.getFormat());
+            String instructionBaseData = this.extractInstructionBaseData(element, uicTicketLayout);
             return sdf.parse(instructionBaseData);
         } catch(ParseException exception) {
             throw new TlbInterpreterException(exception);
         }
     }
 
-    private String extractInstructionBaseData(Instruction instruction, TicketLayout uicTicketLayout) throws TlbInterpreterException {
+    private String extractInstructionBaseData(Element element, TicketLayout uicTicketLayout) throws TlbInterpreterException {
         List<String> baseStringList = new ArrayList<>();
-        for (Field field : instruction.getFields()) {
+        for (Field field : element.getFields()) {
             String fieldValue = this.findLayoutField(uicTicketLayout, field.getLine(), field.getColumn());
 
             if (!field.isOptional() && fieldValue == null) {
@@ -230,17 +230,17 @@ public class TlbInterpreter {
             }
 
             if (field.getPrefix() != null) {
-                fieldValue = String.format("%s%s%s", field.getPrefix(), instruction.getDelimiter(), fieldValue);
+                fieldValue = String.format("%s%s%s", field.getPrefix(), element.getDelimiter(), fieldValue);
             }
 
             if (field.getSuffix() != null) {
-                fieldValue = String.format("%s%s%s", fieldValue, instruction.getDelimiter(), field.getSuffix());
+                fieldValue = String.format("%s%s%s", fieldValue, element.getDelimiter(), field.getSuffix());
             }
 
             baseStringList.add(fieldValue);
         }
 
-        if (instruction.getDelimiter() == null) {
+        if (element.getDelimiter() == null) {
             if (!baseStringList.isEmpty()) {
                 return baseStringList.get(0);
             } else {
@@ -248,7 +248,7 @@ public class TlbInterpreter {
             }
         } else {
             if (!baseStringList.isEmpty()) {
-                return String.join(instruction.getDelimiter(), baseStringList);
+                return String.join(element.getDelimiter(), baseStringList);
             } else {
                 return null;
             }

@@ -8,7 +8,7 @@ class Interpreter {
     private String name;
     private String version;
     private List<Constraint> constraints;
-    private List<Instruction> instructions;
+    private List<Element> elements;
 
     public String getName() {
         return name;
@@ -42,19 +42,19 @@ class Interpreter {
         this.constraints.add(constraint);
     }
 
-    public List<Instruction> getInstructions() {
-        return instructions;
+    public List<Element> getInstructions() {
+        return elements;
     }
 
-    public void setInstructions(List<Instruction> instructions) {
-        this.instructions = instructions;
+    public void setInstructions(List<Element> elements) {
+        this.elements = elements;
     }
 
-    public void addInstruction(Instruction instruction) {
-        if (this.instructions == null) {
-            this.instructions = new ArrayList<>();
+    public void addInstruction(Element element) {
+        if (this.elements == null) {
+            this.elements = new ArrayList<>();
         }
 
-        this.instructions.add(instruction);
+        this.elements.add(element);
     }
 }
