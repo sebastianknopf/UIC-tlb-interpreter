@@ -7,6 +7,7 @@ class Interpreter {
 
     private String name;
     private String version;
+    private String timezone;
     private List<Constraint> constraints;
     private List<Element> elements;
 
@@ -26,15 +27,23 @@ class Interpreter {
         this.version = version;
     }
 
-    public List<Constraint> getConditions() {
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
+    public List<Constraint> getConstraints() {
         return constraints;
     }
 
-    public void setConditions(List<Constraint> constraints) {
+    public void setConstraints(List<Constraint> constraints) {
         this.constraints = constraints;
     }
 
-    public void addCondition(Constraint constraint) {
+    public void addConstraint(Constraint constraint) {
         if (this.constraints == null) {
             this.constraints = new ArrayList<>();
         }
@@ -42,15 +51,15 @@ class Interpreter {
         this.constraints.add(constraint);
     }
 
-    public List<Element> getInstructions() {
+    public List<Element> getElements() {
         return elements;
     }
 
-    public void setInstructions(List<Element> elements) {
+    public void setElements(List<Element> elements) {
         this.elements = elements;
     }
 
-    public void addInstruction(Element element) {
+    public void addElement(Element element) {
         if (this.elements == null) {
             this.elements = new ArrayList<>();
         }

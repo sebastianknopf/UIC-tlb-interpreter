@@ -1,6 +1,7 @@
 {
 	"name": "DB Plain Interpreter",
 	"version": "1.0",
+	"timezone": "Europe/Berlin",
 	"constraints": [
 		{
 			"key": "ricsCode",
@@ -55,11 +56,18 @@
 		},
 		{
 			"type":"passengerName",
-			"delimiter":" ",
-			"format":"",
 			"fields": [
 				{
 					"line":8,
+					"column":1
+				}
+			]
+		},
+		{
+			"type":"infoText",
+			"fields": [
+				{
+					"line":4,
 					"column":1
 				}
 			]

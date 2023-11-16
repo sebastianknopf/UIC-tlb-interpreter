@@ -47,6 +47,7 @@ public class TlbInterpreter {
             this.interpreter = new Interpreter();
             this.interpreter.setName(interpreterObject.getString("name"));
             this.interpreter.setVersion(interpreterObject.getString("version"));
+            this.interpreter.setTimezone(interpreterObject.has("timezone") ? interpreterObject.getString("timezone") : null);
 
             // extract constraints
             JSONArray conditionsArray = interpreterObject.getJSONArray("constraints");
@@ -61,7 +62,7 @@ public class TlbInterpreter {
                     constraint.addValue(String.valueOf(conditionValuesArray.get(v)));
                 }
 
-                this.interpreter.addCondition(constraint);
+                this.interpreter.addConstraint(constraint);
             }
 
             // extract elements
@@ -110,7 +111,7 @@ public class TlbInterpreter {
                     element.addField(field);
                 }
 
-                this.interpreter.addInstruction(element);
+                this.interpreter.addElement(element);
             }
         } catch (Exception exception) {
             throw new TlbInterpreterException(exception);
@@ -126,7 +127,7 @@ public class TlbInterpreter {
             throw new TlbInterpreterException("ticket does not represent a TLB barcode");
         }
 
-        for(Constraint constraint : this.interpreter.getConditions()) {
+        for(Constraint constraint : this.interpreter.getConstraints()) {
             if (constraint.getKey().equalsIgnoreCase("ricsCode")) {
                 if (!constraint.getValues().contains(uicStaticFrame.getHeaderRecord().getIssuer())) {
                     this.raiseConstraintException(constraint.getKey());
@@ -150,7 +151,7 @@ public class TlbInterpreter {
 
         Map<String, Object> result = new LinkedHashMap<>();
 
-        for (Element element : this.interpreter.getInstructions()) {
+        for (Element element : this.interpreter.getElements()) {
             if (element.getType().equalsIgnoreCase("productName")) {
                 result.put(element.getType(), this.stringInstruction(element, uicTicketLayout));
             } else if (element.getType().equalsIgnoreCase("validFrom")) {
@@ -203,6 +204,11 @@ public class TlbInterpreter {
     private Date dateTimeInstruction(Element element, TicketLayout uicTicketLayout) throws TlbInterpreterException {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat(element.getFormat());
+
+            if (this.interpreter.getTimezone() != null) {
+                sdf.setTimeZone(TimeZone.getTimeZone(this.interpreter.getTimezone()));
+            }
+
             String instructionBaseData = this.extractInstructionBaseData(element, uicTicketLayout);
             return sdf.parse(instructionBaseData);
         } catch(ParseException exception) {
