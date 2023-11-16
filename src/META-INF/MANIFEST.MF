@@ -1,4 +1,3 @@
 Manifest-Version: 1.0
 Main-Class: org.uic.interpreter.console.Main
-Class-Path: json-20151123.jar org.uic.barcode-1.4.4.jar
 

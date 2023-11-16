@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="json" level="application" />
-    <orderEntry type="library" name="org.uic.barcode-1.4.4" level="application" />
+    <orderEntry type="library" name="json" level="project" />
+    <orderEntry type="library" name="org.uic.barcode-1.4.4" level="project" />
   </component>
 </module>

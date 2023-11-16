@@ -158,31 +158,44 @@ public class TlbInterpreter {
 
         for (Element element : this.interpreter.getElements()) {
             if (element.getType().equalsIgnoreCase("productName")) {
-                result.put(element.getType(), this.stringElement(element, uicTicketLayout));
+                Object elementValue = this.stringElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else if (element.getType().equalsIgnoreCase("validFrom")) {
-                result.put(element.getType(), this.dateTimeElement(element, uicTicketLayout));
+                Object elementValue = this.dateTimeElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else if (element.getType().equalsIgnoreCase("validUntil")) {
-                result.put(element.getType(), this.dateTimeElement(element, uicTicketLayout));
+                Object elementValue = this.dateTimeElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else if (element.getType().equalsIgnoreCase("startStationName")) {
-                result.put(element.getType(), this.stringElement(element, uicTicketLayout));
+                Object elementValue = this.stringElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else if (element.getType().equalsIgnoreCase("destinationStationName")) {
-                result.put(element.getType(), this.stringElement(element, uicTicketLayout));
+                Object elementValue = this.stringElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             }  else if (element.getType().equalsIgnoreCase("returnValidFrom")) {
-                result.put(element.getType(), this.dateTimeElement(element, uicTicketLayout));
+                Object elementValue = this.dateTimeElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else if (element.getType().equalsIgnoreCase("returnValidUntil")) {
-                result.put(element.getType(), this.dateTimeElement(element, uicTicketLayout));
+                Object elementValue = this.dateTimeElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else if (element.getType().equalsIgnoreCase("returnStartStationName")) {
-                result.put(element.getType(), this.stringElement(element, uicTicketLayout));
+                Object elementValue = this.stringElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else if (element.getType().equalsIgnoreCase("returnDestinationStationName")) {
-                result.put(element.getType(), this.stringElement(element, uicTicketLayout));
+                Object elementValue = this.stringElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else if (element.getType().equalsIgnoreCase("passengerName")) {
-                result.put(element.getType(), this.stringElement(element, uicTicketLayout));
+                Object elementValue = this.stringElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else if (element.getType().equalsIgnoreCase("passengerBirthday")) {
-                result.put(element.getType(), this.dateTimeElement(element, uicTicketLayout));
+                Object elementValue = this.dateTimeElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else if (element.getType().equalsIgnoreCase("serviceClass")) {
-                result.put(element.getType(), this.stringElement(element, uicTicketLayout));
+                Object elementValue = this.stringElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else if (element.getType().equalsIgnoreCase("infoText")) {
-                result.put(element.getType(), this.stringElement(element, uicTicketLayout));
+                Object elementValue = this.stringElement(element, uicTicketLayout);
+                this.addResultElement(result, element, elementValue);
             } else {
                 throw new TlbInterpreterException(String.format("unknown element type %s", element.getType()));
             }
@@ -224,6 +237,16 @@ public class TlbInterpreter {
             }
         } catch(ParseException exception) {
             throw new TlbInterpreterException(exception);
+        }
+    }
+
+    private void addResultElement(Map<String, Object> resultMap, Element element, Object elementValue) throws TlbInterpreterException {
+        if (!element.isOptional() && elementValue == null) {
+            throw new TlbInterpreterException(String.format("element of type %s could not be found but is required", element.getType()));
+        }
+
+        if (elementValue != null) {
+            resultMap.put(element.getType(), elementValue);
         }
     }
 
