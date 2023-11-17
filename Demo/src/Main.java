@@ -1,5 +1,3 @@
-package org.uic.interpreter.console;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.uic.barcode.Decoder;
@@ -13,7 +11,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         System.out.println();
 
@@ -79,5 +76,4 @@ public class Main {
         }
         return data;
     }
-
 }
