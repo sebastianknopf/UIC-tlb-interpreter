@@ -78,13 +78,13 @@ public class TlbInterpreter {
                 element.setDelimiter(elementObject.has("delimiter") ? elementObject.getString("delimiter") : null);
                 element.setFormat(elementObject.has("format") ? elementObject.getString("format") : null);
 
-                JSONArray instructionFieldsArray = elementObject.getJSONArray("fields");
-                if (instructionFieldsArray.length() > 1 && element.getDelimiter() == null) {
+                JSONArray elementFieldsArray = elementObject.getJSONArray("fields");
+                if (elementFieldsArray.length() > 1 && element.getDelimiter() == null) {
                     throw new TlbInterpreterException("instruction delimiter property must not be null when number of fields > 1");
                 }
 
-                for (int f = 0; f < instructionFieldsArray.length(); f++) {
-                    JSONObject fieldObject = instructionFieldsArray.getJSONObject(f);
+                for (int f = 0; f < elementFieldsArray.length(); f++) {
+                    JSONObject fieldObject = elementFieldsArray.getJSONObject(f);
 
                     Field field = new Field();
                     field.setLine(fieldObject.getInt("line"));
