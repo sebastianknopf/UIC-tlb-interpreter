@@ -68,16 +68,18 @@ public class TlbInterpreter {
             }
 
             // extract field based constraints
-            JSONArray fieldConstraintsArray = interpreterObject.getJSONArray("fieldConstraints");
-            for (int c = 0; c < fieldConstraintsArray.length(); c++) {
-                JSONObject fieldConstraintObject = (JSONObject) fieldConstraintsArray.get(c);
+            if (interpreterObject.has("fieldConstraints")) {
+                JSONArray fieldConstraintsArray = interpreterObject.getJSONArray("fieldConstraints");
+                for (int c = 0; c < fieldConstraintsArray.length(); c++) {
+                    JSONObject fieldConstraintObject = (JSONObject) fieldConstraintsArray.get(c);
 
-                FieldConstraint fieldConstraint = new FieldConstraint();
-                fieldConstraint.setLine(fieldConstraintObject.getInt("line"));
-                fieldConstraint.setColumn(fieldConstraintObject.getInt("column"));
-                fieldConstraint.setRegex(fieldConstraintObject.getString("regex"));
+                    FieldConstraint fieldConstraint = new FieldConstraint();
+                    fieldConstraint.setLine(fieldConstraintObject.getInt("line"));
+                    fieldConstraint.setColumn(fieldConstraintObject.getInt("column"));
+                    fieldConstraint.setRegex(fieldConstraintObject.getString("regex"));
 
-                this.interpreter.addFieldConstraint(fieldConstraint);
+                    this.interpreter.addFieldConstraint(fieldConstraint);
+                }
             }
 
             // extract elements

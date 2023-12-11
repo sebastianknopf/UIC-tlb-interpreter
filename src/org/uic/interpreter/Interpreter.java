@@ -12,6 +12,11 @@ class Interpreter {
     private List<FieldConstraint> fieldConstraints;
     private List<Element> elements;
 
+    Interpreter() {
+        this.specConstraints = new ArrayList<>();
+        this.fieldConstraints = new ArrayList<>();
+    }
+
     public String getName() {
         return name;
     }
