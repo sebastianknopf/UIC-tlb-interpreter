@@ -1,7 +1,7 @@
 {
 	"name": "VBN Interpreter",
 	"version": "1.0",
-	"constraints": [
+	"specConstraints": [
 		{
 			"key": "ricsCode",
 			"values": ["3348"]

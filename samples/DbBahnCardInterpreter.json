@@ -17,7 +17,14 @@
 		},
 		{
 			"key":"layoutStandard",
-			"values": ["PLAI"]
+			"values": ["RCT2"]
+		}
+	],
+	"fieldConstraints": [
+		{
+			"line": 0,
+			"column": 12,
+			"regex": "^BAHNCARD(.|\n|\r)*"
 		}
 	],
 	"elements": [
@@ -25,62 +32,35 @@
 			"type":"productName",
 			"fields": [
 				{
-					"line":1,
-					"column":1
+					"line":0,
+					"column":12,
+					"regex": ".*\n(.*)\n.*"
 				}
 			]
 		},
 		{
 			"type":"validFrom",
 			"delimiter":".",
-			"format":"dd.MM.yyyy HH:mm",
+			"format":"dd.MM.yyyy.HH:mm",
 			"fields": [
 				{
-					"line":2,
+					"line":3,
 					"column":1,
-					"substring": [4, 16]
+					"substring": [11, 10],
+					"suffix": "00:00"
 				}
 			]
 		},
 		{
 			"type":"validUntil",
 			"delimiter":".",
-			"format":"dd.MM.yyyy HH:mm",
+			"format":"dd.MM.yyyy.HH:mm",
 			"fields": [
 				{
-					"line":2,
+					"line":3,
 					"column":1,
-					"substring": [25, 16]
-				}
-			]
-		},
-		{
-			"type":"passengerName",
-			"fields": [
-				{
-					"line":8,
-					"column":1
-				}
-			]
-		},
-		{
-			"type":"passengerBirthday",
-			"optional":true,
-			"format": "dd.MM.yyyy",
-			"fields": [
-				{
-					"line":8,
-					"column":1,
-					"regex":"(\\d{1,2}\\.\\d{1,2}\\.\\d{4})"
-				}
-			]
-		},
-		{
-			"type":"infoText",
-			"fields": [
-				{
-					"line":4,
-					"column":1
+					"substring": [33, 10],
+					"suffix": "23:59"
 				}
 			]
 		}

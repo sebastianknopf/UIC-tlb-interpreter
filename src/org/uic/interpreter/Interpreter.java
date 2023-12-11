@@ -8,7 +8,8 @@ class Interpreter {
     private String name;
     private String version;
     private String timezone;
-    private List<Constraint> constraints;
+    private List<SpecConstraint> specConstraints;
+    private List<FieldConstraint> fieldConstraints;
     private List<Element> elements;
 
     public String getName() {
@@ -35,20 +36,36 @@ class Interpreter {
         this.timezone = timezone;
     }
 
-    public List<Constraint> getConstraints() {
-        return constraints;
+    public List<SpecConstraint> getSpecConstraints() {
+        return specConstraints;
     }
 
-    public void setConstraints(List<Constraint> constraints) {
-        this.constraints = constraints;
+    public void setSpecConstraints(List<SpecConstraint> specConstraints) {
+        this.specConstraints = specConstraints;
     }
 
-    public void addConstraint(Constraint constraint) {
-        if (this.constraints == null) {
-            this.constraints = new ArrayList<>();
+    public void addSpecConstraint(SpecConstraint specConstraint) {
+        if (this.specConstraints == null) {
+            this.specConstraints = new ArrayList<>();
         }
 
-        this.constraints.add(constraint);
+        this.specConstraints.add(specConstraint);
+    }
+
+    public List<FieldConstraint> getFieldConstraints() {
+        return fieldConstraints;
+    }
+
+    public void setFieldConstraints(List<FieldConstraint> fieldConstraints) {
+        this.fieldConstraints = fieldConstraints;
+    }
+
+    public void addFieldConstraint(FieldConstraint fieldConstraint) {
+        if (this.fieldConstraints == null) {
+            this.fieldConstraints = new ArrayList<>();
+        }
+
+        this.fieldConstraints.add(fieldConstraint);
     }
 
     public List<Element> getElements() {

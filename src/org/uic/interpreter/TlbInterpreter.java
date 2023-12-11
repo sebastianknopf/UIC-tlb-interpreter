@@ -51,20 +51,33 @@ public class TlbInterpreter {
             this.interpreter.setVersion(interpreterObject.getString("version"));
             this.interpreter.setTimezone(interpreterObject.has("timezone") ? interpreterObject.getString("timezone") : null);
 
-            // extract constraints
-            JSONArray conditionsArray = interpreterObject.getJSONArray("constraints");
-            for (int c = 0; c < conditionsArray.length(); c++) {
-                JSONObject conditionObject = (JSONObject) conditionsArray.get(c);
+            // extract spec based constraints
+            JSONArray specConstraintsArray = interpreterObject.getJSONArray("specConstraints");
+            for (int c = 0; c < specConstraintsArray.length(); c++) {
+                JSONObject specConstraintObject = (JSONObject) specConstraintsArray.get(c);
 
-                Constraint constraint = new Constraint();
-                constraint.setKey(conditionObject.getString("key"));
+                SpecConstraint specConstraint = new SpecConstraint();
+                specConstraint.setKey(specConstraintObject.getString("key"));
 
-                JSONArray conditionValuesArray = conditionObject.getJSONArray("values");
+                JSONArray conditionValuesArray = specConstraintObject.getJSONArray("values");
                 for (int v = 0; v < conditionValuesArray.length(); v++) {
-                    constraint.addValue(String.valueOf(conditionValuesArray.get(v)));
+                    specConstraint.addValue(String.valueOf(conditionValuesArray.get(v)));
                 }
 
-                this.interpreter.addConstraint(constraint);
+                this.interpreter.addSpecConstraint(specConstraint);
+            }
+
+            // extract field based constraints
+            JSONArray fieldConstraintsArray = interpreterObject.getJSONArray("fieldConstraints");
+            for (int c = 0; c < fieldConstraintsArray.length(); c++) {
+                JSONObject fieldConstraintObject = (JSONObject) fieldConstraintsArray.get(c);
+
+                FieldConstraint fieldConstraint = new FieldConstraint();
+                fieldConstraint.setLine(fieldConstraintObject.getInt("line"));
+                fieldConstraint.setColumn(fieldConstraintObject.getInt("column"));
+                fieldConstraint.setRegex(fieldConstraintObject.getString("regex"));
+
+                this.interpreter.addFieldConstraint(fieldConstraint);
             }
 
             // extract elements
@@ -132,25 +145,37 @@ public class TlbInterpreter {
             throw new TlbInterpreterException("ticket does not represent a TLB barcode");
         }
 
-        for(Constraint constraint : this.interpreter.getConstraints()) {
-            if (constraint.getKey().equalsIgnoreCase("ricsCode")) {
-                if (!constraint.getValues().contains(uicStaticFrame.getHeaderRecord().getIssuer())) {
-                    this.raiseConstraintException(constraint.getKey());
+        for(SpecConstraint specConstraint : this.interpreter.getSpecConstraints()) {
+            if (specConstraint.getKey().equalsIgnoreCase("ricsCode")) {
+                if (!specConstraint.getValues().contains(uicStaticFrame.getHeaderRecord().getIssuer())) {
+                    this.raiseConstraintException(specConstraint.getKey());
                 }
-            } else if (constraint.getKey().equalsIgnoreCase("messageTypeVersion")) {
-                if (!constraint.getValues().contains(String.valueOf(uicStaticFrame.getVersion()))) {
-                    this.raiseConstraintException(constraint.getKey());
+            } else if (specConstraint.getKey().equalsIgnoreCase("messageTypeVersion")) {
+                if (!specConstraint.getValues().contains(String.valueOf(uicStaticFrame.getVersion()))) {
+                    this.raiseConstraintException(specConstraint.getKey());
                 }
-            } else if (constraint.getKey().equalsIgnoreCase("recordVersion")) {
-                if (!constraint.getValues().contains(uicStaticFrame.getuTlay().getVersionId())) {
-                    this.raiseConstraintException(constraint.getKey());
+            } else if (specConstraint.getKey().equalsIgnoreCase("recordVersion")) {
+                if (!specConstraint.getValues().contains(uicStaticFrame.getuTlay().getVersionId())) {
+                    this.raiseConstraintException(specConstraint.getKey());
                 }
-            } else if (constraint.getKey().equalsIgnoreCase("layoutStandard")) {
-                if (!constraint.getValues().contains(uicTicketLayout.getLayoutStandard())) {
-                    this.raiseConstraintException(constraint.getKey());
+            } else if (specConstraint.getKey().equalsIgnoreCase("layoutStandard")) {
+                if (!specConstraint.getValues().contains(uicTicketLayout.getLayoutStandard())) {
+                    this.raiseConstraintException(specConstraint.getKey());
                 }
             } else {
-                throw new TlbConstraintException(String.format("unknown constraint key %s", constraint.getKey()));
+                throw new TlbConstraintException(String.format("unknown constraint key %s", specConstraint.getKey()));
+            }
+        }
+
+        for (FieldConstraint fieldConstraint : this.interpreter.getFieldConstraints()) {
+            String fieldValue = this.findLayoutField(uicTicketLayout, fieldConstraint.getLine(), fieldConstraint.getColumn());
+            if (fieldValue != null) {
+                Matcher matcher = Pattern.compile(fieldConstraint.getRegex()).matcher(fieldValue);
+                if (!matcher.matches()) {
+                    throw new TlbConstraintException(String.format("constraint field (%d/%d) does not match constraint regex", fieldConstraint.getLine(), fieldConstraint.getColumn()));
+                }
+            } else {
+                throw new TlbConstraintException(String.format("constraint field (%d/%d) does not exist", fieldConstraint.getLine(), fieldConstraint.getColumn()));
             }
         }
 
