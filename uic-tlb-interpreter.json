@@ -10,34 +10,6 @@
         "timezone": {
             "type": "string"
         },
-        "constraints": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "key": {
-                        "type": "string",
-                        "enum": [
-                            "ricsCode",
-                            "messageTypeVersion",
-                            "recordVersion",
-                            "layoutStandard"
-                        ]
-                    },
-                    "values": {
-                        "type": "array",
-                        "minItems": 1,
-                        "items": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "required": [
-                    "key",
-                    "values"
-                ]
-            }
-        },
         "elements": {
             "type": "array",
             "minItems": 1,
@@ -116,13 +88,63 @@
                     "fields"
                 ]
             }
+        },
+        "specConstraints": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "enum": [
+                            "ricsCode",
+                            "messageTypeVersion",
+                            "recordVersion",
+                            "layoutStandard"
+                        ]
+                    },
+                    "values": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "key",
+                    "values"
+                ]
+            }
+        },
+        "fieldConstraints": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "line": {
+                        "type": "integer"
+                    },
+                    "column": {
+                        "type": "integer"
+                    },
+                    "regex": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "line",
+                    "column",
+                    "regex"
+                ]
+            }
         }
     },
     "required": [
         "name",
         "version",
-        "constraints",
-        "elements"
+        "elements",
+        "specConstraints"
     ],
     "title": "uic-tlb-interpreter",
     "description": "Interpreter for UIC TLB data processing."
