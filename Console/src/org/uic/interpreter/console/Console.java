@@ -12,11 +12,19 @@ public class Console {
         System.out.println(str);
     }
 
+    public static void writeLine(String str, int num) {
+        for (int i = 0; i < num; i++) {
+            Console.write(str);
+        }
+
+        Console.writeLine("");
+    }
+
     public static String readLine() {
         Scanner scanner = new Scanner(System.in);
 
         String stringResult = scanner.next();
-        if (!stringResult.equals("")) {
+        if (!stringResult.isEmpty()) {
             return stringResult;
         } else {
             return null;
@@ -48,12 +56,12 @@ public class Console {
 
     public static boolean askForBooleanResult(String question, boolean defaultValue) {
         if (defaultValue) {
-            Console.write(String.format("%s (Y/n) ", question));
+            Console.write(String.format("%s (J/n) ", question));
         } else {
-            Console.write(String.format("%s (y/N) ", question));
+            Console.write(String.format("%s (j/N) ", question));
         }
 
         String stringResult = Console.readLine();
-        return stringResult.toLowerCase().equals("y");
+        return stringResult != null && stringResult.equalsIgnoreCase("j");
     }
 }
