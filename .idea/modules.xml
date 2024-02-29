@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Demo/Demo.iml" filepath="$PROJECT_DIR$/Demo/Demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Console/Console.iml" filepath="$PROJECT_DIR$/Console/Console.iml" />
       <module fileurl="file://$PROJECT_DIR$/UicTlbInterpreter.iml" filepath="$PROJECT_DIR$/UicTlbInterpreter.iml" />
     </modules>
   </component>

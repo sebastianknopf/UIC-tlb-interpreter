@@ -1,7 +1,10 @@
+package org.uic.interpreter;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.uic.barcode.Decoder;
 import org.uic.interpreter.TlbInterpreter;
+import org.uic.interpreter.console.Console;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -12,7 +15,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println();
+        /*System.out.println();
 
         try {
             Scanner scanner = new Scanner(System.in);
@@ -56,8 +59,21 @@ public class Main {
                 System.out.println(String.format("%s: %s", entry.getKey(), entry.getValue() != null ? entry.getValue().toString() : null));
             }
 
+            boolean result = Console.askForBooleanResult("This is a test. Do you want to continue or not?", true);
+            Console.write(String.format("%s", result));
+
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }*/
+
+        if (args.length > 0 && args[0] != null) {
+            String command = args[0].toLowerCase().trim();
+
+            if (command.equals("view")) {
+
+            } else if (command.equals("assistant")) {
+
+            }
         }
     }
 

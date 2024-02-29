@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="org.uic.interpreter-demo">
-    <output-path>$PROJECT_DIR$/out/artifacts/org_uic_interpreter_demo</output-path>
-    <root id="archive" name="org.uic.interpreter-demo.jar">
-      <element id="module-output" name="Demo" />
+  <artifact type="jar" name="org.uic.interpreter-console">
+    <output-path>$PROJECT_DIR$/out/artifacts/org_uic_interpreter_console</output-path>
+    <root id="archive" name="org.uic.interpreter-console.jar">
+      <element id="module-output" name="Console" />
       <element id="module-output" name="UicTlbInterpreter" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/json/json/20220924/json-20220924.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/org.uic.barcode-1.4.4.jar" path-in-jar="/" />
