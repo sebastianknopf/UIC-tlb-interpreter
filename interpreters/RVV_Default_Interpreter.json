@@ -1,0 +1,87 @@
+{
+	"name": "RVV Interpreter",
+	"version": "1.0",
+	"specConstraints": [
+		{
+			"key": "ricsCode",
+			"values": ["3497"]
+		},
+		{
+			"key": "messageTypeVersion",
+			"values": ["1"]
+		},
+		{
+			"key":"recordVersion",
+			"values": ["01"]
+		},
+		{
+			"key":"layoutStandard",
+			"values": ["RCT2"]
+		}
+	],
+	"elements": [
+		{
+			"type":"productName",
+			"fields": [
+				{
+					"line":1,
+					"column":1
+				}
+			]
+		},
+		{
+			"type":"validFrom",
+			"format":"yyyy-MM-dd HH:mm",
+			"fields": [
+				{
+					"line":2,
+					"column":1,
+					"regex":"^Von\\s(\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}).*"
+				}
+			]
+		},
+		{
+			"type":"validUntil",
+			"format":"yyyy-MM-dd HH:mm",
+			"fields": [
+				{
+					"line":2,
+					"column":1,
+					"regex":".*Bis\\s(\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2})$"
+				}
+			]
+		},
+		{
+			"type":"startStationName",
+			"optional": true,
+			"fields": [
+				{
+					"line":3,
+					"column":1,
+					"regex":"^Prst.*ab\\s((?!null).*)$"
+				}
+			]
+		},
+		{
+			"type":"destinationStationName",
+			"optional": true,
+			"fields": [
+				{
+					"line":3,
+					"column":1,
+					"regex":"^(Prst\\s(?!null).*)\\sab.*$"
+				}
+			]
+		},
+		{
+			"type":"passengerName",
+			"delimiter":" ",
+			"fields": [
+				{
+					"line":4,
+					"column":1
+				}
+			]
+		}
+	]
+}

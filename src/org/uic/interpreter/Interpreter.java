@@ -3,7 +3,7 @@ package org.uic.interpreter;
 import java.util.ArrayList;
 import java.util.List;
 
-class Interpreter {
+public class Interpreter {
 
     private String name;
     private String version;
@@ -12,7 +12,7 @@ class Interpreter {
     private List<FieldConstraint> fieldConstraints;
     private List<Element> elements;
 
-    Interpreter() {
+    public Interpreter() {
         this.specConstraints = new ArrayList<>();
         this.fieldConstraints = new ArrayList<>();
     }

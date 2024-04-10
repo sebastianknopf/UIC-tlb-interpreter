@@ -1,4 +1,4 @@
-package org.uic.interpreter;
+package org.uic.interpreter.main;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -7,8 +7,12 @@ import org.uic.barcode.Decoder;
 import org.uic.barcode.staticFrame.StaticFrame;
 import org.uic.barcode.ticket.EncodingFormatException;
 import org.uic.interpreter.TlbInterpreter;
+import org.uic.interpreter.command.CommandAssistant;
+import org.uic.interpreter.command.CommandTest;
 import org.uic.interpreter.command.CommandView;
 import org.uic.interpreter.console.Console;
+import org.uic.interpreter.exception.TlbConstraintException;
+import org.uic.interpreter.exception.TlbInterpreterException;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -29,11 +33,12 @@ public class Main {
             Console.writeLine("#", 100);
             Console.writeLine("Willkommen in der uic-tlb-interpreter Konsole!");
             Console.writeLine("#", 100);
-            Console.writeLine("");
 
             // try reading a (((eTicketInfo file at first
             StaticFrame uicStaticFrame = null;
             while (uicStaticFrame == null) {
+
+                Console.writeLine("");
                 String eTicketInfoFileName = Console.askForStringResult("Bitte geben Sie den Pfad zur (((eTicketInfo-Datei an:");
 
                 try {
@@ -55,8 +60,7 @@ public class Main {
                     Console.writeLine("Die (((eTicketInfo-Datei konnte nicht gelesen werden. Möglicherweise handelt es sich nicht um ein UIC-Ticket.");
                 } catch (JSONException e) {
                     Console.writeLine("Die (((eTicketInfo-Datei konnte nicht gelesen werden. Möglicherweise handelt es sich nicht um eine (((eTicketInfo-Datei.");
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     Console.writeLine("Die (((eTicketInfo-Datei konnte nicht gelesen werden. Bitte versuchen Sie es erneut.");
                 }
             }
@@ -72,6 +76,51 @@ public class Main {
                 commandView.execute(uicStaticFrame);
 
                 // run assistant command next
+                // run the whole interpreter now
+                boolean commandResult = false;
+                while (!commandResult) {
+                    try {
+
+                        Console.writeLine("");
+                        String interpreterFilename = Console.askForStringResult("Bitte geben Sie an, wie die Interpreter-Datei später heißen soll:");
+
+                        CommandAssistant commandAssistant = new CommandAssistant(interpreterFilename);
+                        commandAssistant.execute(uicStaticFrame);
+
+                        commandResult = true;
+                    } catch(IOException ex) {
+                        Console.writeLine("Die Interpreter-Datei konnte nicht geschrieben werden. Bitte versuchen Sie es erneut.");
+                    }
+                }
+            } else if (command.equals("test")) {
+                // display ticket info and content at first
+                CommandView commandView = new CommandView();
+                commandView.execute(uicStaticFrame);
+
+                // run the whole interpreter now
+                boolean commandResult = false;
+                while (!commandResult) {
+                    try {
+
+                        Console.writeLine("");
+                        String interpreterFilename = Console.askForStringResult("Bitte geben Sie den Pfad zur Interpreter-Datei an:");
+
+                        CommandTest commandTest = new CommandTest(interpreterFilename);
+                        commandTest.execute(uicStaticFrame);
+
+                        commandResult = true;
+                    } catch(IOException ex) {
+                        Console.writeLine("Die Interpreter-Datei konnte nicht gefunden oder geöffnet werden. Bitte versuchen Sie es erneut.");
+                    } catch (TlbConstraintException ex) {
+                        Console.writeLine("Eine Bedingung des Interpreters wurde verletzt. Bitte versuchen Sie es erneut.");
+                        ex.printStackTrace();
+                        Console.writeLine("");
+                    } catch (TlbInterpreterException ex) {
+                        Console.writeLine("Bei der Ausführung des Interpreters ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
+                        ex.printStackTrace();
+                        Console.writeLine("");
+                    }
+                }
             }
         }
     }

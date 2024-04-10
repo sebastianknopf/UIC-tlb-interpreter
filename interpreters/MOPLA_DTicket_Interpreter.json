@@ -1,0 +1,68 @@
+{
+	"name": "MOPLA Interpreter",
+	"version": "1.0",
+	"specConstraints": [
+		{
+			"key": "ricsCode",
+			"values": ["5211"]
+		}, 
+		{
+			"key": "messageTypeVersion",
+			"values": ["1"]
+		},
+		{
+			"key":"recordVersion",
+			"values": ["01"]
+		},
+		{
+			"key":"layoutStandard",
+			"values": ["RCT2"]
+		}
+	],
+	"elements": [
+		{
+			"type":"productName",
+			"fields": [
+				{
+					"line":1,
+					"column":18
+				}
+			]
+		},
+		{
+			"type":"validFrom",
+			"format":"dd.MM.yyyy HH:mm",
+			"delimiter": " ",
+			"fields": [
+				{
+					"line":12,
+					"column":1,
+					"substring": [11, 10],
+					"suffix": "00:00"
+				}
+			]
+		},
+		{
+			"type":"validUntil",
+			"format":"dd.MM.yyyy HH:mm",
+			"delimiter": " ",
+			"fields": [
+				{
+					"line":12,
+					"column":1,
+					"substring": [26, 10],
+					"suffix": "03:00"
+				}
+			]
+		},
+		{
+			"type":"passengerName",
+			"fields": [
+				{
+					"line":0,
+					"column":52
+				}
+			]
+		}
+	]
+}

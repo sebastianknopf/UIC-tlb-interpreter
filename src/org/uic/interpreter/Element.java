@@ -3,7 +3,7 @@ package org.uic.interpreter;
 import java.util.ArrayList;
 import java.util.List;
 
-class Element {
+public class Element {
 
     private String type;
     private boolean optional;

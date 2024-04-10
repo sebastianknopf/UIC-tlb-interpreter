@@ -1,6 +1,6 @@
 package org.uic.interpreter;
 
-class Field {
+public class Field {
 
     private int line;
     private int column;

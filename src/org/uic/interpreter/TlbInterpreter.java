@@ -257,7 +257,7 @@ public class TlbInterpreter {
             }
 
             String elementBaseData = this.extractElementBaseData(element, uicTicketLayout);
-            if (elementBaseData != null) {
+            if (elementBaseData != null && !elementBaseData.equals("null")) {
                 return sdf.parse(elementBaseData);
             } else {
                 return null;

@@ -1,7 +1,7 @@
 # UIC TLB Interpreter
 Interpreter for UIC railway tickets based on UIC918.3 layouts.
 
-## Documentation
+## Usage
 To use the TLB interpreter, you need a interpreter definition and a reference to the [uic-barcode library](https://github.com/UnionInternationalCheminsdeFer/UIC-barcode) at least. Implementation then works as follows:
 
 ```java
@@ -18,9 +18,9 @@ try {
 }
 ```
 
-Take a look into JSON schema [uic-tlb-interpreter.json](uic-tlb-interpreter.json) to see how a interpreter definition must look like and examples in [samples directory](/samples) for reference.
+Take a look into JSON schema [uic-tlb-interpreter.json](uic-tlb-interpreter.json) to see how a interpreter definition must look like. The [interpreters directory](/interpreters) contains all known and running interpreters. Some example tickets can be found in [samples directory](/samples) for reference.
 
-## Result Types
+### Result Types
 Currently, the interpreter supports following result types:
 
 - productName

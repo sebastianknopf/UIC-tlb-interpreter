@@ -2,7 +2,7 @@ package org.uic.interpreter;
 
 import java.util.List;
 
-class FieldConstraint {
+public class FieldConstraint {
 
     private int line;
     private int column;

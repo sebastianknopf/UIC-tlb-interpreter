@@ -3,7 +3,7 @@ package org.uic.interpreter;
 import java.util.ArrayList;
 import java.util.List;
 
-class SpecConstraint {
+public class SpecConstraint {
 
     private String key;
     private List<String> values;

@@ -1,0 +1,64 @@
+{
+	"name": "VRT Default Interpreter",
+	"version": "1.0",
+	"specConstraints": [
+		{
+			"key": "ricsCode",
+			"values": ["3565"]
+		}, 
+		{
+			"key": "messageTypeVersion",
+			"values": ["1"]
+		},
+		{
+			"key":"recordVersion",
+			"values": ["01"]
+		},
+		{
+			"key":"layoutStandard",
+			"values": ["RCT2"]
+		}
+	],
+	"elements": [
+		{
+			"type":"productName",
+			"fields": [
+				{
+					"line":1,
+					"column":1
+				}
+			]
+		},
+		{
+			"type":"validFrom",
+			"format":"yyyy-MM-dd HH:mm:ss",
+			"fields": [
+				{
+					"line":2,
+					"column":1,
+					"substring": [3, 19]
+				}
+			]
+		},
+		{
+			"type":"validUntil",
+			"format":"yyyy-MM-dd HH:mm:ss",
+			"fields": [
+				{
+					"line":2,
+					"column":1,
+					"substring": [27, 19]
+				}
+			]
+		},
+		{
+			"type":"passengerName",
+			"fields": [
+				{
+					"line":4,
+					"column":1
+				}
+			]
+		}
+	]
+}
