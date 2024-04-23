@@ -1,0 +1,107 @@
+{
+	"name": "VVS FAIRTIQ Interpreter",
+	"version": "1.0",
+	"specConstraints": [
+		{
+			"key": "ricsCode",
+			"values": ["2580"]
+		}, 
+		{
+			"key": "messageTypeVersion",
+			"values": ["1"]
+		},
+		{
+			"key":"recordVersion",
+			"values": ["01"]
+		},
+		{
+			"key":"layoutStandard",
+			"values": ["RCT2"]
+		}
+	],
+	"elements": [
+		{
+			"type":"productName",
+			"fields": [
+				{
+					"line":1,
+					"column":18
+				}
+			]
+		},
+		{
+			"type":"validFrom",
+			"format":"dd.MM.yyyy HH:mm",
+			"delimiter": " ",
+			"fields": [
+				{
+					"line":3,
+					"column":1,
+					"regex": "^Gültig\\s(\\d{2}\\.\\d{2}\\.\\d{4}\\s\\d{2}:\\d{2}).*"
+				}
+			]
+		},
+		{
+			"type":"validUntil",
+			"format":"dd.MM.yyyy HH:mm",
+			"delimiter": " ",
+			"fields": [
+				{
+					"line":3,
+					"column":1,
+					"regex": ".*(\\d{2}\\.\\d{2}\\.\\d{4}\\s\\d{2}:\\d{2})$"
+				}
+			]
+		},
+		{
+			"type":"startStationName",
+			"optional": true,
+			"fields": [
+				{
+					"optional": true,
+					"line":6,
+					"column":13
+				}
+			]
+		},
+		{
+			"type":"passengerName",
+			"fields": [
+				{
+					"line":0,
+					"column":52
+				}
+			]
+		},
+		{
+			"type":"passengerBirthday",
+			"optional": true,
+			"format": "dd.MM.yyyy",
+			"fields": [
+				{
+					"line":3,
+					"column":52,
+					"optional":true,
+					"regex": "((?!\\*)\\d{2}\\.\\d{2}\\.\\d{4})"
+				}
+			]
+		},
+		{
+			"type":"infoText",
+			"delimiter": "\\n",
+			"optional": true,
+			"fields": [
+				{
+					"line":12,
+					"column":1,
+					"optional": true
+				},
+				{
+					"line":14,
+					"column":1,
+					"optional": true
+				}
+			]
+		}
+	]
+}

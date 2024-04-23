@@ -1,0 +1,98 @@
+{
+	"name": "EOSU Default Interpreter",
+	"version": "1.0",
+	"specConstraints": [
+		{
+			"key":"layoutStandard",
+			"values": ["EOSU"]
+		}
+	],
+	"elements": [
+		{
+			"type":"productName",
+			"fields": [
+				{
+					"line":1,
+					"column":0
+				}
+			]
+		},
+		{
+			"type":"validFrom",
+			"format":"dd.MM.yyyy HH:mm",
+			"fields": [
+				{
+					"line":3,
+					"column":0,
+					"regex":"^(.*)-.*$"
+				}
+			]
+		},
+		{
+			"type":"validUntil",
+			"format":"dd.MM.yyyy HH:mm",
+			"fields": [
+				{
+					"line":3,
+					"column":0,
+					"regex":"^.*-(.*)$"
+				}
+			]
+		},
+		{
+			"type":"startStationName",
+			"optional": true,
+			"fields": [
+				{
+					"line":6,
+					"column":0,
+					"optional": true,
+				}
+			]
+		},
+		{
+			"type":"destinationStationName",
+			"optional": true,
+			"fields": [
+				{
+					"line":7,
+					"column":0,
+					"optional": true,
+				}
+			]
+		},
+		{
+			"type":"passengerName",
+			"fields": [
+				{
+					"line":0,
+					"column":0
+				}
+			]
+		},
+		{
+			"type":"passengerBirthday",
+			"format": "dd.MM.yyyy",
+			"optional": true,
+			"fields": [
+				{
+					"line":5,
+					"column":0,
+					"optional": true
+				}
+			]
+		},
+		{
+			"type":"infoText",
+			"optional": true,
+			"fields": [
+				{
+					"line":2,
+					"column":0,
+					"optional": true
+				}
+			]
+		}
+		
+	]
+}
