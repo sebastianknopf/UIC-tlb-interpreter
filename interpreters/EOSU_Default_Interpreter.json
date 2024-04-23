@@ -46,7 +46,7 @@
 				{
 					"line":6,
 					"column":0,
-					"optional": true,
+					"optional": true
 				}
 			]
 		},
@@ -57,7 +57,7 @@
 				{
 					"line":7,
 					"column":0,
-					"optional": true,
+					"optional": true
 				}
 			]
 		},
@@ -93,6 +93,5 @@
 				}
 			]
 		}
-		
 	]
 }
