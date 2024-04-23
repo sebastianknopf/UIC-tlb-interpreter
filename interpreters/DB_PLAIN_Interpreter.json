@@ -1,6 +1,6 @@
 {
 	"name": "DB Plain Interpreter",
-	"version": "1.0",
+	"version": "1.1",
 	"timezone": "Europe/Berlin",
 	"specConstraints": [
 		{
@@ -59,7 +59,8 @@
 			"fields": [
 				{
 					"line":8,
-					"column":1
+					"column":1,
+					"regex":"^([^,]*)"
 				}
 			]
 		},
