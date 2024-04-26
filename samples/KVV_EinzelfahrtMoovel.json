@@ -1,0 +1,739 @@
+{
+  "expertview" : [ {
+    "apdus" : [ ],
+    "base16" : "0x2355543031333238343030303033302D021460FAA3E88E930D008F9F33BD8257FF4247CFCAC30215008DFC6646D5C33DBBCBAC3E9923F382B7DD07FB7E0000003032343578DA5590CD4AC43014855F254B0529E7E6BFCB615A157421E374E16AE840468BD354DA2AE8B3B9F3C5BC49617402219CC3B9DF49D2EC6EEB5505028C52D26BEDAD545E9C2DA96125C8932187AA16A2D96DEF574F3CA494DBACB71220C3DB839801A0BC6E5FC6D7769C03637912259B307771783B20B316A77C0CFB769ABB368296694AA8BA8B5FE17838312833129863AC0C1F36093C84711AE2458897502C093A8574BA2C6C364C6E96BA606DE14E0E99821F6333F92C63FC5FC616DA51EE36A95EB99B9FEFE3DC3D8B8FA117395FA42AB1EFA67F9254A6AAC45075B361CD77A1CCD4745582740AD0F229D57BDF7FFE0293AA5AFB",
+    "e8" : null,
+    "error" : null,
+    "parsed" : {
+      "items" : [ {
+        "hex" : "0x235554",
+        "name" : "uniqueMessageTypeID",
+        "typ" : "PrintableString",
+        "value" : "#UT"
+      }, {
+        "hex" : "0x3031",
+        "name" : "messageTypeVersion",
+        "typ" : "PrintableString",
+        "value" : "01"
+      }, {
+        "hex" : "0x33323834",
+        "name" : "ricsCode",
+        "typ" : "PrintableString",
+        "value" : "3284"
+      }, {
+        "hex" : "0x3030303033",
+        "name" : "idSignatureKey",
+        "typ" : "PrintableString",
+        "value" : "00003"
+      }, {
+        "hex" : "0x302D021460FAA3E88E930D008F9F33BD8257FF4247CFCAC30215008DFC6646D5C33DBBCBAC3E9923F382B7DD07FB7E000000",
+        "name" : "signature",
+        "typ" : "Array",
+        "value" : "48, 45, 2, 20, 96, 250, 163, 232, 142, 147, 13, 0, 143, 159, 51, 189, 130, 87, 255, 66, 71, 207, 202, 195, 2, 21, 0, 141, 252, 102, 70, 213, 195, 61, 187, 203, 172, 62, 153, 35, 243, 130, 183, 221, 7, 251, 126, 0, 0, 0"
+      }, {
+        "items" : [ {
+          "hex" : "0x",
+          "name" : "Length",
+          "typ" : "Unsigned 4 digits",
+          "value" : "245"
+        }, {
+          "hex" : "0x78DA5590CD4AC43014855F254B0529E7E6BFCB615A157421E374E16AE840468BD354DA2AE8B3B9F3C5BC49617402219CC3B9DF49D2EC6EEB5505028C52D26BEDAD545E9C2DA96125C8932187AA16A2D96DEF574F3CA494DBACB71220C3DB839801A0BC6E5FC6D7769C03637912259B307771783B20B316A77C0CFB769ABB368296694AA8BA8B5FE17838312833129863AC0C1F36093C84711AE2458897502C093A8574BA2C6C364C6E96BA606DE14E0E99821F6333F92C63FC5FC616DA51EE36A95EB99B9FEFE3DC3D8B8FA117395FA42AB1EFA67F9254A6AAC45075B361CD77A1CCD4745582740AD0F229D57BDF7FFE0293AA5AFB",
+          "typ" : "Char Vector",
+          "value" : "245"
+        } ],
+        "name" : "compressedMessage",
+        "typ" : "Char Vector"
+      } ],
+      "typ" : "TLB Message V1"
+    },
+    "type" : "PKI Message"
+  }, {
+    "apdus" : [ ],
+    "base16" : "0x555F484541443031303035333332383434383632333820202020202020202020202020203234303632303138313531373044452020555F544C4159303130333337524354323030313530303138303133333230303039466168726B61727465303035323031303930303030354B6E6F70663030363230313039303030303953656261737469616E3031313830313333313030313545696E7A656C666168726B61727465303135323031303230303030313130313535303131363030303130506572736F6E28656E2930333031303130343030303034323031383036303130313035303030303532342E30363036303730313035303030303531352E31373036353230313035303030303532342E30363036353830313035303030303531362E34373132303130323530323030333747C3BC6C74696720766F6D2032342E30362E32303138206269732032342E30362E323031383133353230313033303030303345555231333536303131353030303034312C39303134353230313139303030303544756D6D79",
+    "e8" : null,
+    "error" : null,
+    "parsed" : {
+      "items" : [ {
+        "items" : [ {
+          "hex" : "0x555F48454144",
+          "name" : "recordID",
+          "typ" : "PrintableString",
+          "value" : "U_HEAD"
+        }, {
+          "hex" : "0x",
+          "name" : "recordVersion",
+          "typ" : "Unsigned 2 digits",
+          "value" : "1"
+        }, {
+          "hex" : "0x",
+          "name" : "recordLength",
+          "typ" : "Record Length",
+          "value" : "53"
+        }, {
+          "hex" : "0x",
+          "name" : "ricsCode",
+          "typ" : "Unsigned 4 digits",
+          "value" : "3284"
+        }, {
+          "hex" : "0x3438363233382020202020202020202020202020",
+          "name" : "unambiguousTicketKey",
+          "typ" : "PrintableString",
+          "value" : "486238              "
+        }, {
+          "hex" : "0x5B455252464D545D6D59484D",
+          "name" : "editionTime",
+          "typ" : "EditionTime",
+          "value" : "24.06.2018 15:17"
+        }, {
+          "hex" : "0x30",
+          "name" : "flags",
+          "typ" : "INT1",
+          "value" : "48"
+        }, {
+          "hex" : "0x4445",
+          "name" : "editionLanguage",
+          "typ" : "PrintableString",
+          "value" : "DE"
+        }, {
+          "hex" : "0x2020",
+          "name" : "secondLanguage",
+          "typ" : "PrintableString",
+          "value" : "  "
+        } ],
+        "typ" : "HEAD Rekord"
+      }, {
+        "items" : [ {
+          "hex" : "0x555F544C4159",
+          "name" : "recordID",
+          "typ" : "PrintableString",
+          "value" : "U_TLAY"
+        }, {
+          "hex" : "0x",
+          "name" : "recordVersion",
+          "typ" : "Unsigned 2 digits",
+          "value" : "1"
+        }, {
+          "hex" : "0x",
+          "name" : "recordLength",
+          "typ" : "Record Length",
+          "value" : "337"
+        }, {
+          "hex" : "0x52435432",
+          "name" : "layoutStandard",
+          "typ" : "PrintableString",
+          "value" : "RCT2"
+        }, {
+          "hex" : "0x",
+          "name" : "numberOfFields",
+          "typ" : "Unsigned 4 digits",
+          "value" : "15"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "0"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "18"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "33"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "2"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "9"
+            }, {
+              "hex" : "0x466168726B61727465",
+              "typ" : "PrintableString",
+              "value" : "Fahrkarte"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "0"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "52"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "9"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "5"
+            }, {
+              "hex" : "0x4B6E6F7066",
+              "typ" : "PrintableString",
+              "value" : "Knopf"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "0"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "62"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "9"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "9"
+            }, {
+              "hex" : "0x53656261737469616E",
+              "typ" : "PrintableString",
+              "value" : "Sebastian"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "18"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "33"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "1"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "15"
+            }, {
+              "hex" : "0x45696E7A656C666168726B61727465",
+              "typ" : "PrintableString",
+              "value" : "Einzelfahrkarte"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "52"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "2"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "1"
+            }, {
+              "hex" : "0x31",
+              "typ" : "PrintableString",
+              "value" : "1"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "55"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "16"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "10"
+            }, {
+              "hex" : "0x506572736F6E28656E29",
+              "typ" : "PrintableString",
+              "value" : "Person(en)"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "3"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "4"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "4"
+            }, {
+              "hex" : "0x32303138",
+              "typ" : "PrintableString",
+              "value" : "2018"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "6"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "5"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "5"
+            }, {
+              "hex" : "0x32342E3036",
+              "typ" : "PrintableString",
+              "value" : "24.06"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "6"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "7"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "5"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "5"
+            }, {
+              "hex" : "0x31352E3137",
+              "typ" : "PrintableString",
+              "value" : "15.17"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "6"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "52"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "5"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "5"
+            }, {
+              "hex" : "0x32342E3036",
+              "typ" : "PrintableString",
+              "value" : "24.06"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "6"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "58"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "5"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "5"
+            }, {
+              "hex" : "0x31362E3437",
+              "typ" : "PrintableString",
+              "value" : "16.47"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "12"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "2"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "50"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "2"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "37"
+            }, {
+              "hex" : "0x47C3BC6C74696720766F6D2032342E30362E32303138206269732032342E30362E32303138",
+              "typ" : "PrintableString",
+              "value" : "GÃŒltig vom 24.06.2018 bis 24.06.2018"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "13"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "52"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "3"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "3"
+            }, {
+              "hex" : "0x455552",
+              "typ" : "PrintableString",
+              "value" : "EUR"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "13"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "56"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "15"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "4"
+            }, {
+              "hex" : "0x312C3930",
+              "typ" : "PrintableString",
+              "value" : "1,90"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        }, {
+          "items" : [ {
+            "hex" : "0x",
+            "name" : "line",
+            "typ" : "Unsigned 2 digits",
+            "value" : "14"
+          }, {
+            "hex" : "0x",
+            "name" : "column",
+            "typ" : "Unsigned 2 digits",
+            "value" : "52"
+          }, {
+            "hex" : "0x",
+            "name" : "height",
+            "typ" : "Unsigned 2 digits",
+            "value" : "1"
+          }, {
+            "hex" : "0x",
+            "name" : "width",
+            "typ" : "Unsigned 2 digits",
+            "value" : "19"
+          }, {
+            "hex" : "0x",
+            "name" : "formatting",
+            "typ" : "Unsigned 1 digit",
+            "value" : "0"
+          }, {
+            "items" : [ {
+              "hex" : "0x",
+              "name" : "Length",
+              "typ" : "Unsigned 4 digits",
+              "value" : "5"
+            }, {
+              "hex" : "0x44756D6D79",
+              "typ" : "PrintableString",
+              "value" : "Dummy"
+            } ],
+            "typ" : "PrintableString"
+          } ],
+          "typ" : "Textfield"
+        } ],
+        "typ" : "U_TLAY"
+      } ],
+      "typ" : "UIC Records"
+    },
+    "type" : "UIC 918.3"
+  } ],
+  "passengerview" : [ ],
+  "version" : "2305"
+}

@@ -1,0 +1,98 @@
+{
+	"name": "KVV Interpreter",
+	"version": "1.1",
+	"specConstraints": [
+		{
+			"key": "ricsCode",
+			"values": ["3284"]
+		}, 
+		{
+			"key": "messageTypeVersion",
+			"values": ["1"]
+		},
+		{
+			"key":"recordVersion",
+			"values": ["01"]
+		},
+		{
+			"key":"layoutStandard",
+			"values": ["RCT2"]
+		}
+	],
+	"elements": [
+		{
+			"type":"productName",
+			"fields": [
+				{
+					"line":1,
+					"column":18
+				}
+			]
+		},
+		{
+			"type":"validFrom",
+			"delimiter":".",
+			"format":"dd.MM.yyyy.HH.mm",
+			"fields": [
+				{
+					"line":6,
+					"column":1
+				},
+				{
+					"line":3,
+					"column":1
+				},
+				{
+					"line":6,
+					"column":7
+				}
+			]
+		},
+		{
+			"type":"validUntil",
+			"delimiter":".",
+			"format":"dd.MM.yyyy.HH.mm",
+			"fields": [
+				{
+					"line":6,
+					"column":52
+				},
+				{
+					"line":3,
+					"column":1
+				},
+				{
+					"line":6,
+					"column":58
+				}
+			]
+		},
+		{
+			"type":"passengerName",
+			"delimiter":" ",
+			"fields": [
+				{
+					"line":0,
+					"column":62
+				},
+				{
+					"line":0,
+					"column":52
+				}
+			]
+		},
+		{
+			"type":"passengerBirthday",
+			"optional":true,
+			"format": "dd.MM.yyyy",
+			"fields": [
+				{
+					"line":3,
+					"column":52,
+					"optional": true,
+					"regex":"(\\d{1,2}\\.\\d{1,2}\\.\\d{4})"
+				}
+			]
+		}
+	]
+}
