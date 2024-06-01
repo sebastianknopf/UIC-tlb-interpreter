@@ -1,0 +1,111 @@
+{
+	"name": "RVL FAIRTIQ Interpreter",
+	"version": "1.0",
+	"specConstraints": [
+		{
+			"key": "ricsCode",
+			"values": ["9999"]
+		}, 
+		{
+			"key": "messageTypeVersion",
+			"values": ["1"]
+		},
+		{
+			"key":"recordVersion",
+			"values": ["01"]
+		},
+		{
+			"key":"layoutStandard",
+			"values": ["RCT2"]
+		}
+	],
+	"elements": [
+		{
+			"type":"productName",
+			"fields": [
+				{
+					"line":0,
+					"column":19
+				}
+			]
+		},
+		{
+			"type":"validFrom",
+			"format":"dd/MM/yyyy HH:mm",
+			"delimiter": " ",
+			"fields": [
+				{
+					"line":3,
+					"column":2,
+					"substring": [11, 10],
+					"suffix": "00:00"
+				}
+			]
+		},
+		{
+			"type":"validUntil",
+			"format":"dd/MM/yyyy HH:mm",
+			"delimiter": " ",
+			"fields": [
+				{
+					"line":3,
+					"column":2,
+					"substring": [25, 10],
+					"suffix": "03:00"
+				}
+			]
+		},
+		{
+			"type":"startStationName",
+			"optional": true,
+			"fields": [
+				{
+					"optional": true,
+					"line":6,
+					"column":14
+				}
+			]
+		},
+		{
+			"type":"destinationStationName",
+			"optional": true,
+			"fields": [
+				{
+					"optional": true,
+					"line":6,
+					"column":35
+				}
+			]
+		},
+		{
+			"type":"passengerName",
+			"fields": [
+				{
+					"line":0,
+					"column":53
+				}
+			]
+		},
+		{
+			"type":"serviceClass",
+			"fields": [
+				{
+					"line":6,
+					"column":68
+				}
+			]
+		},
+		{
+			"type":"infoText",
+			"delimiter": "\\n",
+			"optional": true,
+			"fields": [
+				{
+					"line":8,
+					"column":6,
+					"optional": true
+				}
+			]
+		}
+	]
+}
