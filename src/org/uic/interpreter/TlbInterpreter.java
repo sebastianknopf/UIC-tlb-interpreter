@@ -258,7 +258,18 @@ public class TlbInterpreter {
 
             String elementBaseData = this.extractElementBaseData(element, uicTicketLayout);
             if (elementBaseData != null && !elementBaseData.equals("null")) {
-                return sdf.parse(elementBaseData);
+                Date resultDateTime = sdf.parse(elementBaseData);
+
+                Calendar resultApproveCalendar = Calendar.getInstance();
+                resultApproveCalendar.setTime(resultDateTime);
+
+                if (resultApproveCalendar.get(Calendar.YEAR) == 1970) {
+                    resultApproveCalendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
+
+                    resultDateTime = resultApproveCalendar.getTime();
+                }
+
+                return resultDateTime;
             } else {
                 return null;
             }
