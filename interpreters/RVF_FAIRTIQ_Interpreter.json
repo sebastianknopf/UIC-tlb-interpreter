@@ -1,10 +1,10 @@
 {
-	"name": "VBN Interpreter",
-	"version": "1.1",
+	"name": "RVF FAIRTIQ Interpreter",
+	"version": "1.0",
 	"specConstraints": [
 		{
 			"key": "ricsCode",
-			"values": ["3348"]
+			"values": ["3155"]
 		}, 
 		{
 			"key": "messageTypeVersion",
@@ -24,71 +24,72 @@
 			"type":"productName",
 			"fields": [
 				{
-					"line":1,
-					"column":18
+					"line":0,
+					"column":19
 				}
 			]
 		},
 		{
 			"type":"validFrom",
-			"delimiter":".",
-			"format":"dd.MM.yyyy.HH.mm",
+			"format":"dd/MM/yyyy HH:mm",
+			"delimiter": " ",
 			"fields": [
 				{
-					"line":6,
-					"column":1
-				},
-				{
 					"line":3,
-					"column":1
-				},
-				{
-					"line":6,
-					"column":7
+					"column":2,
+					"substring": [11, 16]
 				}
 			]
 		},
 		{
 			"type":"validUntil",
-			"delimiter":".",
-			"format":"dd.MM.yyyy.HH.mm",
+			"format":"dd/MM/yyyy HH:mm",
+			"delimiter": " ",
 			"fields": [
 				{
-					"line":6,
-					"column":52
-				},
-				{
 					"line":3,
-					"column":1
-				},
+					"column":2,
+					"substring": [31, 16]
+				}
+			]
+		},
+		{
+			"type":"startStationName",
+			"optional": true,
+			"fields": [
 				{
+					"optional": true,
 					"line":6,
-					"column":58
+					"column":14
+				}
+			]
+		},
+		{
+			"type":"destinationStationName",
+			"optional": true,
+			"fields": [
+				{
+					"optional": true,
+					"line":6,
+					"column":35
 				}
 			]
 		},
 		{
 			"type":"passengerName",
-			"delimiter":" ",
 			"fields": [
 				{
 					"line":0,
-					"column":62
-				},
-				{
-					"line":0,
-					"column":52
+					"column":53
 				}
 			]
 		},
 		{
 			"type":"serviceClass",
-			"optional": true,
 			"fields": [
 				{
 					"line":6,
-					"column":66,
-					"optional": true
+					"column":68
 				}
 			]
 		}

@@ -1,10 +1,10 @@
 {
-	"name": "VBN Interpreter",
-	"version": "1.1",
+	"name": "5211 ? Interpreter",
+	"version": "1.0",
 	"specConstraints": [
 		{
 			"key": "ricsCode",
-			"values": ["3348"]
+			"values": ["5211"]
 		}, 
 		{
 			"key": "messageTypeVersion",
@@ -32,7 +32,7 @@
 		{
 			"type":"validFrom",
 			"delimiter":".",
-			"format":"dd.MM.yyyy.HH.mm",
+			"format":"dd.MM.yyyy.HH:mm",
 			"fields": [
 				{
 					"line":6,
@@ -51,7 +51,7 @@
 		{
 			"type":"validUntil",
 			"delimiter":".",
-			"format":"dd.MM.yyyy.HH.mm",
+			"format":"dd.MM.yyyy.HH:mm",
 			"fields": [
 				{
 					"line":6,
@@ -69,12 +69,7 @@
 		},
 		{
 			"type":"passengerName",
-			"delimiter":" ",
 			"fields": [
-				{
-					"line":0,
-					"column":62
-				},
 				{
 					"line":0,
 					"column":52
@@ -83,12 +78,10 @@
 		},
 		{
 			"type":"serviceClass",
-			"optional": true,
 			"fields": [
 				{
 					"line":6,
-					"column":66,
-					"optional": true
+					"column":66
 				}
 			]
 		}
