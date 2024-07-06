@@ -1,0 +1,78 @@
+{
+	"name": "SWA DTicket Interpreter",
+	"version": "1.0",
+	"timezone": "Europe/Berlin",
+	"specConstraints": [
+		{
+			"key": "ricsCode",
+			"values": ["3316"]
+		}, 
+		{
+			"key": "messageTypeVersion",
+			"values": ["1"]
+		},
+		{
+			"key":"recordVersion",
+			"values": ["01"]
+		},
+		{
+			"key":"layoutStandard",
+			"values": ["ST01"]
+		}
+	],
+	"elements": [
+		{
+			"type":"productName",
+			"fields": [
+				{
+					"line":1,
+					"column":1
+				}
+			]
+		},
+		{
+			"type":"validFrom",
+			"delimiter":".",
+			"format":"dd.MM.yyyy.HH:mm",
+			"fields": [
+				{
+					"line":7,
+					"column":1,
+					"suffix":"00:00"
+				}
+			]
+		},
+		{
+			"type":"validUntil",
+			"delimiter":".",
+			"format":"dd.MM.yyyy.HH:mm",
+			"fields": [
+				{
+					"line":8,
+					"column":1,
+					"suffix":"23:59"
+				}
+			]
+		},
+        {
+            "type":"passengerName",
+            "fields":[
+                {
+                    "line":9,
+                    "column":1
+                }
+            ]
+        },
+        {
+            "type":"passengerBirthday",
+            "delimiter":"-",
+            "format":"yyyy-MM-dd",
+            "fields":[
+                {
+                    "line":6,
+                    "column":1
+                }
+            ]
+        }
+	]
+}
