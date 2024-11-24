@@ -269,6 +269,12 @@ public class TlbInterpreter {
                     resultDateTime = resultApproveCalendar.getTime();
                 }
 
+                if (resultApproveCalendar.get(Calendar.YEAR) < 2000) {
+                    return null;
+                } else if (resultApproveCalendar.get(Calendar.YEAR) > 2100) {
+                    return null;
+                }
+
                 return resultDateTime;
             } else {
                 return null;
